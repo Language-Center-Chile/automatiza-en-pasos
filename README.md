@@ -50,3 +50,6 @@ Las secciones **Bonos** y **Servicios / B2B** son opcionales. Para quitar cualqu
 
 ## Valores
 Los precios son **referenciales** (pendientes de validación con datos reales de LCC), tal como están marcados en la página.
+
+### Desarrolladores
+- Tiquitia: diseño y desarrollo.
