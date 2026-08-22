@@ -45,3 +45,17 @@ jobs:
             process.exit(1);
           }
           NODE
+
+      - name: Verify internal navigation targets
+        run: |
+          node <<'NODE'
+          const fs = require('node:fs');
+          const html = fs.readFileSync('index.html', 'utf8');
+          const ids = new Set([...html.matchAll(/\sid="([^"]+)"/g)].map((match) => match[1]));
+          const targets = [...html.matchAll(/href="#([^"]+)"/g)].map((match) => match[1]);
+          const missing = [...new Set(targets)].filter((target) => !ids.has(target));
+          if (missing.length) {
+            console.error(`Missing internal targets: ${missing.map((id) => `#${id}`).join(', ')}`);
+            process.exit(1);
+          }
+          NODE
