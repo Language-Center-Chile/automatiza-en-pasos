@@ -51,7 +51,13 @@ jobs:
           node <<'NODE'
           const fs = require('node:fs');
           const html = fs.readFileSync('index.html', 'utf8');
-          const ids = new Set([...html.matchAll(/\sid="([^"]+)"/g)].map((match) => match[1]));
+          const idValues = [...html.matchAll(/\sid="([^"]+)"/g)].map((match) => match[1]);
+          const ids = new Set(idValues);
+          const duplicates = [...new Set(idValues.filter((id, index) => idValues.indexOf(id) !== index))];
+          if (duplicates.length) {
+            console.error(`Duplicate IDs: ${duplicates.join(', ')}`);
+            process.exit(1);
+          }
           const targets = [...html.matchAll(/href="#([^"]+)"/g)].map((match) => match[1]);
           const missing = [...new Set(targets)].filter((target) => !ids.has(target));
           if (missing.length) {
