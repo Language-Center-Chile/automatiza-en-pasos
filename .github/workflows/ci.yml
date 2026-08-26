@@ -46,6 +46,23 @@ jobs:
           }
           NODE
 
+      - name: Verify new-tab link isolation
+        run: |
+          node <<'NODE'
+          const fs = require('node:fs');
+          const html = fs.readFileSync('index.html', 'utf8');
+          const newTabLinks = [...html.matchAll(/<a\b[^>]*\btarget\s*=\s*["']_blank["'][^>]*>/gi)]
+            .map((match) => match[0]);
+          const unsafe = newTabLinks.filter((tag) => {
+            const rel = tag.match(/\brel\s*=\s*["']([^"']*)["']/i)?.[1] ?? '';
+            return !rel.split(/\s+/).includes('noopener');
+          });
+          if (unsafe.length) {
+            console.error(`New-tab links missing rel="noopener": ${unsafe.length}`);
+            process.exit(1);
+          }
+          NODE
+
       - name: Verify internal navigation targets
         run: |
           node <<'NODE'
