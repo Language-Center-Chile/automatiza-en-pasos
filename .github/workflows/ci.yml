@@ -46,6 +46,19 @@ jobs:
           }
           NODE
 
+      - name: Verify image alternative text
+        run: |
+          node <<'NODE'
+          const fs = require('node:fs');
+          const html = fs.readFileSync('index.html', 'utf8');
+          const images = [...html.matchAll(/<img\b[^>]*>/gi)].map((match) => match[0]);
+          const missingAlt = images.filter((tag) => !/\balt\s*=/i.test(tag));
+          if (missingAlt.length) {
+            console.error(`Images missing alt attribute: ${missingAlt.length}`);
+            process.exit(1);
+          }
+          NODE
+
       - name: Verify new-tab link isolation
         run: |
           node <<'NODE'
