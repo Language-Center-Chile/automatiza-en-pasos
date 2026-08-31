@@ -59,6 +59,27 @@ jobs:
           }
           NODE
 
+      - name: Verify lead form field names
+        run: |
+          node <<'NODE'
+          const fs = require('node:fs');
+          const html = fs.readFileSync('index.html', 'utf8');
+          const form = html.match(/<form\b[^>]*\bid=["']lead-form["'][^>]*>([\s\S]*?)<\/form>/i)?.[1];
+          if (!form) {
+            console.error('Lead form not found');
+            process.exit(1);
+          }
+          const fields = [...form.matchAll(/<(?:input|select|textarea)\b[^>]*>/gi)]
+            .map((match) => match[0]);
+          const names = fields.map((tag) => tag.match(/\bname\s*=\s*["']([^"']+)["']/i)?.[1]);
+          const missingNames = names.filter((name) => !name).length;
+          const duplicateNames = [...new Set(names.filter((name, index) => name && names.indexOf(name) !== index))];
+          if (missingNames || duplicateNames.length) {
+            console.error(`Lead fields missing name: ${missingNames}; duplicate names: ${duplicateNames.join(', ') || 'none'}`);
+            process.exit(1);
+          }
+          NODE
+
       - name: Verify new-tab link isolation
         run: |
           node <<'NODE'
