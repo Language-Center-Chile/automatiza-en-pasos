@@ -58,7 +58,7 @@
 
       // ¿El formulario todavía no está conectado a un destino?
       if (form.action.indexOf("REEMPLAZAR_ID") !== -1) {
-        status.textContent = "Formulario en modo demo: aún no está conectado al destino de leads. (Ver README)";
+        status.textContent = "El registro todavía no está habilitado. Puedes escribir a contacto@languagecenterchile.com.";
         status.classList.add("err");
         return;
       }
@@ -77,7 +77,7 @@
           }
         })
         .catch(function () {
-          status.textContent = "No pudimos enviar el formulario. Intenta de nuevo o escríbenos por WhatsApp.";
+          status.textContent = "No pudimos enviar el formulario. Intenta de nuevo o escribe a contacto@languagecenterchile.com.";
           status.classList.add("err");
         });
     });
