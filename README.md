@@ -53,3 +53,9 @@ Los precios son **referenciales** (pendientes de validación con datos reales de
 
 ### Desarrolladores
 - Tiquitia: diseño y desarrollo.
+
+## Estado de lanzamiento
+
+El estado comercial, los bloqueadores y el checklist de salida se mantienen en [docs/LAUNCH_READINESS.md](docs/LAUNCH_READINESS.md).
+
+La landing permanece en preparación interna. No publicar, activar pagos ni conceder accesos hasta completar QA end-to-end y contar con aprobación final.
