@@ -31,6 +31,17 @@ jobs:
       - name: Check JavaScript syntax
         run: node --check script.js
 
+      - name: Verify document language
+        run: |
+          node <<'NODE'
+          const fs = require('node:fs');
+          const html = fs.readFileSync('index.html', 'utf8');
+          if (!/<html\b[^>]*\blang\s*=\s*["']es(?:-[A-Za-z]{2})?["']/i.test(html)) {
+            console.error('The document must declare Spanish with lang="es" or a Spanish locale');
+            process.exit(1);
+          }
+          NODE
+
       - name: Verify local asset references
         run: |
           node <<'NODE'
