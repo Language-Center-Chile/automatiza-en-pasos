@@ -1,0 +1,158 @@
+name: CI — Static Landing
+
+on:
+  pull_request:
+  push:
+    branches: [main]
+
+permissions:
+  contents: read
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+
+      - name: Verify required files
+        shell: bash
+        run: |
+          set -euo pipefail
+          for file in index.html styles.css script.js assets/logo-lc.png assets/logo-aleph.png; do
+            test -s "$file"
+          done
+
+      - name: Check JavaScript syntax
+        run: node --check script.js
+
+      - name: Verify document language
+        run: |
+          node <<'NODE'
+          const fs = require('node:fs');
+          const html = fs.readFileSync('index.html', 'utf8');
+          if (!/<html\b[^>]*\blang\s*=\s*["']es(?:-[A-Za-z]{2})?["']/i.test(html)) {
+            console.error('The document must declare Spanish with lang="es" or a Spanish locale');
+            process.exit(1);
+          }
+          NODE
+
+      - name: Verify local asset references
+        run: |
+          node <<'NODE'
+          const fs = require('node:fs');
+          const html = fs.readFileSync('index.html', 'utf8');
+          const refs = [...html.matchAll(/(?:href|src)="([^"#]+)"/g)]
+            .map((match) => match[1])
+            .filter((ref) => !/^(?:https?:|mailto:|tel:)/.test(ref));
+          const missing = [...new Set(refs)].filter((ref) => !fs.existsSync(ref));
+          if (missing.length) {
+            console.error(`Missing local references: ${missing.join(', ')}`);
+            process.exit(1);
+          }
+          NODE
+
+      - name: Verify image alternative text
+        run: |
+          node <<'NODE'
+          const fs = require('node:fs');
+          const html = fs.readFileSync('index.html', 'utf8');
+          const images = [...html.matchAll(/<img\b[^>]*>/gi)].map((match) => match[0]);
+          const missingAlt = images.filter((tag) => !/\balt\s*=/i.test(tag));
+          if (missingAlt.length) {
+            console.error(`Images missing alt attribute: ${missingAlt.length}`);
+            process.exit(1);
+          }
+          NODE
+
+      - name: Verify lead form field names
+        run: |
+          node <<'NODE'
+          const fs = require('node:fs');
+          const html = fs.readFileSync('index.html', 'utf8');
+          const form = html.match(/<form\b[^>]*\bid=["']lead-form["'][^>]*>([\s\S]*?)<\/form>/i)?.[1];
+          if (!form) {
+            console.error('Lead form not found');
+            process.exit(1);
+          }
+          const fields = [...form.matchAll(/<(?:input|select|textarea)\b[^>]*>/gi)]
+            .map((match) => match[0]);
+          const names = fields.map((tag) => tag.match(/\bname\s*=\s*["']([^"']+)["']/i)?.[1]);
+          const missingNames = names.filter((name) => !name).length;
+          const duplicateNames = [...new Set(names.filter((name, index) => name && names.indexOf(name) !== index))];
+          if (missingNames || duplicateNames.length) {
+            console.error(`Lead fields missing name: ${missingNames}; duplicate names: ${duplicateNames.join(', ') || 'none'}`);
+            process.exit(1);
+          }
+          NODE
+
+      - name: Verify lead form field labels
+        run: |
+          node <<'NODE'
+          const fs = require('node:fs');
+          const html = fs.readFileSync('index.html', 'utf8');
+          const form = html.match(/<form\b[^>]*\bid=["']lead-form["'][^>]*>([\s\S]*?)<\/form>/i)?.[1];
+          if (!form) {
+            console.error('Lead form not found');
+            process.exit(1);
+          }
+          const explicitLabels = new Set(
+            [...form.matchAll(/<label\b[^>]*\bfor\s*=\s*["']([^"']+)["'][^>]*>/gi)]
+              .map((match) => match[1]),
+          );
+          const fields = [...form.matchAll(/<(?:input|select|textarea)\b[^>]*>/gi)];
+          const unlabeled = fields.filter((match) => {
+            const tag = match[0];
+            if (/\btype\s*=\s*["']hidden["']/i.test(tag)) return false;
+            const id = tag.match(/\bid\s*=\s*["']([^"']+)["']/i)?.[1];
+            if (id && explicitLabels.has(id)) return false;
+            const before = form.slice(0, match.index);
+            return before.lastIndexOf('<label') <= before.lastIndexOf('</label>');
+          });
+          if (unlabeled.length) {
+            console.error(`Lead fields missing an associated label: ${unlabeled.length}`);
+            process.exit(1);
+          }
+          NODE
+
+      - name: Verify new-tab link isolation
+        run: |
+          node <<'NODE'
+          const fs = require('node:fs');
+          const html = fs.readFileSync('index.html', 'utf8');
+          const newTabLinks = [...html.matchAll(/<a\b[^>]*\btarget\s*=\s*["']_blank["'][^>]*>/gi)]
+            .map((match) => match[0]);
+          const unsafe = newTabLinks.filter((tag) => {
+            const rel = tag.match(/\brel\s*=\s*["']([^"']*)["']/i)?.[1] ?? '';
+            return !rel.split(/\s+/).includes('noopener');
+          });
+          if (unsafe.length) {
+            console.error(`New-tab links missing rel="noopener": ${unsafe.length}`);
+            process.exit(1);
+          }
+          NODE
+
+      - name: Verify internal navigation targets
+        run: |
+          node <<'NODE'
+          const fs = require('node:fs');
+          const html = fs.readFileSync('index.html', 'utf8');
+          const idValues = [...html.matchAll(/\sid="([^"]+)"/g)].map((match) => match[1]);
+          const ids = new Set(idValues);
+          const duplicates = [...new Set(idValues.filter((id, index) => idValues.indexOf(id) !== index))];
+          if (duplicates.length) {
+            console.error(`Duplicate IDs: ${duplicates.join(', ')}`);
+            process.exit(1);
+          }
+          const targets = [...html.matchAll(/href="#([^"]+)"/g)].map((match) => match[1]);
+          const missing = [...new Set(targets)].filter((target) => !ids.has(target));
+          if (missing.length) {
+            console.error(`Missing internal targets: ${missing.map((id) => `#${id}`).join(', ')}`);
+            process.exit(1);
+          }
+          NODE
