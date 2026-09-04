@@ -338,7 +338,7 @@ a:focus-visible,button:focus-visible,input:focus-visible,select:focus-visible,te
   .hero__illu{min-height:300px;}
   .pain-grid{grid-template-columns:repeat(4,1fr);}
   .cards-3{grid-template-columns:repeat(3,1fr);}
-  .plans{grid-template-columns:repeat(3,1fr);align-items:start;}
+  .plans{grid-template-columns:repeat(2,minmax(0,1fr));align-items:start;max-width:820px;margin-left:auto;margin-right:auto;}
   .plan--pro{transform:translateY(-8px);}
   .case{flex-direction:row;align-items:stretch;}
   .case__feat{flex:1.45;}
