@@ -92,7 +92,7 @@ Como no existe almacenamiento, esta prueba debe permanecer `No probado`. Repetir
 - **Acción de reversa:** retirar el destino de prueba o volver al modo demo.
 - **Evidencia:** captura del mensaje local.
 
-No desconectes un servicio real para simular una caída.
+En esta demo sin conexión externa solo puedes revisar el mensaje local; no puedes demostrar el manejo de una caída real. Mantén este caso `No probado` hasta disponer de un sandbox autorizado con una respuesta de error simulada y verificable. No desconectes un servicio real para simular una caída.
 
 ### Prueba 5 — Privacidad / permisos
 
@@ -162,16 +162,24 @@ La tabla contiene siete columnas:
 
 ### Roadmap inicial de práctica
 
+Ejemplo ficticio: una pequeña empresa prepara un formulario de consultas. Adapta las acciones al MVP que elegiste durante el curso; estas tareas no corresponden a la operación interna de LC Chile.
+
 | Prioridad | Acción | Responsable | Fecha objetivo | Métrica | Estado | Dependencia |
 |---|---|---|---|---|---|---|
-| Alta | Aprobar editorialmente los ocho guiones | Katherine | Día 7 | Ocho decisiones registradas | Pendiente | Revisión de Katherine |
-| Alta | Grabar y validar un video piloto | Producción audiovisual | Día 14 | Un paquete de video, SRT y transcripción aprobado | Pendiente | Guion maestro aprobado |
-| Alta | Cargar y probar un módulo piloto | Administración LMS | Día 21 | Un recorrido de estudiante documentado | Pendiente | LMS y acceso definidos |
-| Media | Ejecutar checkout sandbox | Administración / Finanzas | Día 30 | Una compra de prueba documentada sin cobro real | Pendiente | Proveedor y flujo aprobados |
+| Alta | Resolver la validación de campos incompletos | Responsable del MVP | Día 7 | Caso incompleto bloqueado con aviso claro | Pendiente | Resultado de la prueba 2 |
+| Alta | Diseñar la deduplicación de consultas en sandbox | Responsable técnico | Día 14 | Regla documentada y caso repetido verificable | Pendiente | Almacenamiento de prueba autorizado |
+| Alta | Probar la respuesta ante un servicio no disponible | Responsable técnico | Día 21 | Error simulado sin prometer envío exitoso | Pendiente | Sandbox autorizado |
+| Media | Repetir la medición del recorrido y revisar resultados | Responsable del proceso | Día 30 | Comparación con igual caso, unidad e inicio/término | Pendiente | Casos anteriores documentados |
 
 Sustituye `Día 7`, `Día 14`, `Día 21` y `Día 30` por fechas reales al iniciar el roadmap. No marques una acción `En curso` si su dependencia todavía está abierta.
 
-## 7. Puerta de decisión antes de vender
+## 7. Puerta de decisión antes de activar tu MVP
+
+Para tu negocio de práctica, exige pruebas críticas aprobadas, riesgos abiertos con responsable, permisos revisados, recuperación documentada y medición comparable. Una decisión de activar el MVP requiere evidencia de su propio alcance.
+
+### Referencia: cierre comercial del curso LC Chile
+
+La siguiente lista pertenece al producto educativo de LC Chile y sirve como ejemplo de una puerta comercial más amplia. No es una tarea del alumno ni reemplaza los criterios del MVP de su negocio.
 
 El producto no está listo para vender hasta que exista evidencia de:
 
@@ -180,7 +188,7 @@ El producto no está listo para vender hasta que exista evidencia de:
 - workbook, evaluaciones y descargables probados;
 - derechos de uso, subtítulos y transcripciones verificados;
 - landing y formulario finales aprobados;
-- precio y condiciones aprobados por Katherine;
+- precio y condiciones aprobados por la responsable del producto;
 - checkout y pago probados en sandbox;
 - acceso, onboarding y entrega confirmados;
 - canal de soporte, responsable y límites definidos;
@@ -231,10 +239,10 @@ Selecciona una respuesta por pregunta. Puntaje sugerido de aprobación: **5 de 6
    - B. Force-push de la rama principal.
    - C. Retirar el cambio o crear una reversión revisable.
 
-6. ¿Cuándo está listo para vender el producto?
+6. ¿Cuándo puede aprobarse la activación del MVP?
    - A. Cuando termina el módulo.
    - B. Cuando la landing abre localmente.
-   - C. Cuando todas las puertas comerciales, técnicas y de entrega tienen evidencia y aprobación.
+   - C. Cuando las pruebas críticas, permisos, recuperación y riesgos del alcance tienen evidencia y aprobación.
 
 ### Respuestas
 
@@ -243,7 +251,7 @@ Selecciona una respuesta por pregunta. Puntaje sugerido de aprobación: **5 de 6
 3. C — la demo no implementa idempotencia.  
 4. B — esos campos convierten la acción en verificable.  
 5. C — la reversa debe ser trazable y no destructiva.  
-6. C — un módulo completo no equivale a producto publicado.
+6. C — completar el módulo no demuestra que el MVP esté listo para activarse.
 
 ## Checklist de cierre
 
