@@ -1,0 +1,228 @@
+{
+  "_manifest": {
+    "schema": "ai-video-maker.video-generation-draft.v1",
+    "product": "Automatiza tu Negocio en 7 Pasos",
+    "deliverable": "Piloto del Video 00, escenas 01–05",
+    "status": "PARA_REVISION",
+    "endpoint": "POST /api/video-generation/draft",
+    "generatorDependency": {
+      "repository": "KatherineStehberg/Ai_video_maker",
+      "pullRequest": 2,
+      "branch": "feat/moving-clips-neural-voices",
+      "testedHead": "abb3c4cc17975f05a9498b571910fec124ae8249"
+    },
+    "editorialDependency": {
+      "repository": "Language-Center-Chile/automatiza-en-pasos",
+      "pullRequest": 24,
+      "branch": "agent/storyboard-video-00-dinamico",
+      "baseCommit": "b6c5880ed439a3ab798e2b30a9e6697a9e1604a3"
+    },
+    "scriptSha256": "64d3d24b6851e4ea379fde392d3836354504a87ab2c29d0c8d151cec3d1731a8",
+    "expectedSceneCount": 5,
+    "editorialDurationSeconds": 88,
+    "generationPolicy": "Borrador local primero. No enviar a /jobs hasta importar o confirmar los recursos y aprobar la voz.",
+    "limitations": [
+      "AI Video Maker aplica visualMode al proyecto completo, no por escena.",
+      "Las escenas 01, 04 y 05 requieren gráficos locales; reemplazar cualquier recurso automático antes del render.",
+      "Las escenas 02 y 03 requieren clips con procedencia registrada; no usar una imagen fija como sustitución silenciosa.",
+      "La duración final debe medirse después de sintetizar la voz; los 88 segundos son el montaje editorial objetivo."
+    ]
+  },
+  "provider": "pipeline",
+  "prompt": "Piloto local de bienvenida para un curso práctico. Conservar exactamente la narración y los cinco timecodes revisados. Mezclar portada y diagramas locales con dos clips reales pertinentes, sin datos personales, precios, pagos, credenciales ni afirmaciones de resultados.",
+  "script": "Hola, te doy la bienvenida a Automatiza tu Negocio en 7 Pasos.\n\nEste programa fue creado para ayudarte a transformar una tarea repetitiva de tu negocio en un proceso más claro, medible y preparado para automatizarse. No necesitas saber programar. Tampoco necesitas comenzar comprando nuevas herramientas. Lo más importante es entender qué haces hoy, dónde se pierde tiempo y qué resultado quieres mejorar.\n\nDurante el curso trabajarás sobre un solo proceso real. Puede ser el registro de consultas, el seguimiento de clientes, la agenda, el envío de información, la preparación de documentos o cualquier tarea que repitas con frecuencia.\n\nPrimero vas a observar y ordenar ese proceso. Después crearás una base de seguimiento, explorarás usos concretos de inteligencia artificial y diseñarás un flujo básico. Finalmente, probarás una versión mínima y definirás cómo medirla y mejorarla. La meta no es automatizar todo tu negocio en una semana. La meta es terminar con una primera solución entendible, verificable y que puedas seguir desarrollando con criterio.\n\nLa ruta está organizada en siete pasos.",
+  "duration": 88,
+  "wpm": 125,
+  "format": "16:9",
+  "style": "corporativo",
+  "platform": "lms",
+  "templateId": "video-curso",
+  "scriptSource": "drive-script-and-reviewed-storyboard",
+  "brandId": "lc-chile-courses",
+  "title": "LC_ATN7P_V00_PILOTO_E01_E05",
+  "visualMode": "prefer-video",
+  "voice": {
+    "provider": "edge",
+    "name": "es-CL-CatalinaNeural",
+    "enabled": true,
+    "rate": -1
+  },
+  "musicTrack": {
+    "enabled": false,
+    "path": null,
+    "volume": 0.12
+  },
+  "subtitles": {
+    "enabled": true,
+    "burnIn": true,
+    "language": "es-CL",
+    "style": {
+      "preset": "curso"
+    }
+  },
+  "course": {
+    "courseId": "LC-ATN7P",
+    "courseName": "Automatiza tu Negocio en 7 Pasos",
+    "moduleId": "V00",
+    "moduleName": "Bienvenida y ruta de los 7 pasos",
+    "lessonNumber": 0,
+    "tags": [
+      "piloto",
+      "para-revision",
+      "no-publicar"
+    ]
+  },
+  "sourceReference": {
+    "kind": "drive",
+    "id": "1jHiUztaqgClQXSJOVWqWAqdlxI410VCc",
+    "name": "01_Guion_Video_00_Bienvenida_PARA_REVISION.md",
+    "mimeType": "text/markdown"
+  },
+  "orchestratorProjectId": "course:LC-ATN7P-V00-PILOT-E01-E05",
+  "escenas": [
+    {
+      "role": "hook",
+      "text": "Hola, te doy la bienvenida a Automatiza tu Negocio en 7 Pasos.",
+      "onScreenTitle": "Automatiza tu Negocio en 7 Pasos",
+      "showOnScreenText": true,
+      "onScreenPosition": "center",
+      "onScreenAnimation": "fade",
+      "onScreenStyle": {
+        "size": "xlarge",
+        "color": "#003366",
+        "background": "none",
+        "backgroundColor": "#ffffff",
+        "backgroundOpacity": 0,
+        "outlineColor": "#ffffff",
+        "bold": true
+      },
+      "onScreenTextManual": true,
+      "visualPrompt": "animated white course title card, navy blue route line, clean corporate motion graphic, no people, no prices",
+      "duration": 12,
+      "seccion": "Apertura · escena 01"
+    },
+    {
+      "role": "intro",
+      "text": "Este programa fue creado para ayudarte a transformar una tarea repetitiva de tu negocio en un proceso más claro, medible y preparado para automatizarse. No necesitas saber programar. Tampoco necesitas comenzar comprando nuevas herramientas. Lo más importante es entender qué haces hoy, dónde se pierde tiempo y qué resultado quieres mejorar.",
+      "onScreenTitle": "De repetitivo a claro y medible",
+      "showOnScreenText": false,
+      "onScreenPosition": "upper-third",
+      "onScreenAnimation": "fade",
+      "onScreenTextManual": true,
+      "visualPrompt": "small business paperwork repetitive task, entrepreneur entering records at desk, natural movement, no visible brands or personal data",
+      "duration": 23,
+      "seccion": "Apertura · escena 02"
+    },
+    {
+      "role": "section",
+      "text": "Durante el curso trabajarás sobre un solo proceso real. Puede ser el registro de consultas, el seguimiento de clientes, la agenda, el envío de información, la preparación de documentos o cualquier tarea que repitas con frecuencia.",
+      "onScreenTitle": "Un proceso real",
+      "showOnScreenText": true,
+      "onScreenPosition": "upper-third",
+      "onScreenAnimation": "slide-up",
+      "onScreenStyle": {
+        "size": "large",
+        "color": "#ffffff",
+        "background": "box",
+        "backgroundColor": "#003366",
+        "backgroundOpacity": 0.8,
+        "outlineColor": "#003366",
+        "bold": true
+      },
+      "onScreenTextManual": true,
+      "visualPrompt": "entrepreneur planning workflow at desk, small business owner organizing tasks, continuous natural movement, no logos or personal data",
+      "duration": 18,
+      "seccion": "Qué construirás · escena 03"
+    },
+    {
+      "role": "point",
+      "text": "Primero vas a observar y ordenar ese proceso. Después crearás una base de seguimiento, explorarás usos concretos de inteligencia artificial y diseñarás un flujo básico. Finalmente, probarás una versión mínima y definirás cómo medirla y mejorarla. La meta no es automatizar todo tu negocio en una semana. La meta es terminar con una primera solución entendible, verificable y que puedas seguir desarrollando con criterio.",
+      "onScreenTitle": "Observar · ordenar · probar · medir",
+      "showOnScreenText": false,
+      "onScreenPosition": "upper-third",
+      "onScreenAnimation": "fade",
+      "onScreenTextManual": true,
+      "visualPrompt": "animated four-step workflow diagram, observe organize test measure, navy and light blue on white, clean corporate motion graphic",
+      "duration": 27,
+      "seccion": "Qué construirás · escena 04"
+    },
+    {
+      "role": "section",
+      "text": "La ruta está organizada en siete pasos.",
+      "onScreenTitle": "Tu ruta en 7 pasos",
+      "showOnScreenText": true,
+      "onScreenPosition": "center",
+      "onScreenAnimation": "slide-up",
+      "onScreenStyle": {
+        "size": "xlarge",
+        "color": "#003366",
+        "background": "none",
+        "backgroundColor": "#ffffff",
+        "backgroundOpacity": 0,
+        "outlineColor": "#ffffff",
+        "bold": true
+      },
+      "onScreenTextManual": true,
+      "visualPrompt": "animated numbered route with seven steps, navy blue and light blue on white, clean corporate motion graphic, no logos",
+      "duration": 8,
+      "seccion": "Ruta de los siete pasos · escena 05"
+    }
+  ],
+  "_assetPlan": [
+    {
+      "scene": 1,
+      "source": "local-graphic",
+      "required": "V00-01_portada_16x9.png o equivalente animado autorizado",
+      "automaticVisualAllowed": false
+    },
+    {
+      "scene": 2,
+      "source": "pexels-video",
+      "query": "small business paperwork repetitive task",
+      "requiredEvidence": [
+        "remoteId",
+        "sourceUrl",
+        "author",
+        "licenseUrl",
+        "retrievedAt"
+      ],
+      "automaticVisualAllowed": true
+    },
+    {
+      "scene": 3,
+      "source": "pexels-video",
+      "query": "entrepreneur planning workflow desk",
+      "requiredEvidence": [
+        "remoteId",
+        "sourceUrl",
+        "author",
+        "licenseUrl",
+        "retrievedAt"
+      ],
+      "automaticVisualAllowed": true
+    },
+    {
+      "scene": 4,
+      "source": "local-graphic",
+      "required": "Cadena animada observar → ordenar → probar → medir",
+      "automaticVisualAllowed": false
+    },
+    {
+      "scene": 5,
+      "source": "local-graphic",
+      "required": "Ruta numerada 1–7, continuación visual de la escena 04",
+      "automaticVisualAllowed": false
+    }
+  ],
+  "_reviewGate": {
+    "publicationBlocked": true,
+    "batchProductionBlocked": true,
+    "requiredBeforeRender": [
+      "Confirmar que la voz es española y que el catálogo contiene es-CL-CatalinaNeural.",
+      "Importar o confirmar los gráficos locales de las escenas 01, 04 y 05.",
+      "Revisar procedencia y pertinencia de los clips de las escenas 02 y 03.",
+      "Verificar que ninguna escena muestre datos reales, precios, pagos o credenciales."
+    ],
+    "singleDecision": "Katherine debe aprobar o rechazar voz, ritmo y mezcla visual del montaje de escenas 01–05 antes de producir las escenas 06–22."
+  }
+}
