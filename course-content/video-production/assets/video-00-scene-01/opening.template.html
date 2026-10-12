@@ -1,0 +1,129 @@
+<!doctype html>
+<html lang="es">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Automatiza tu Negocio en 7 Pasos | LC</title>
+<style>
+  *{box-sizing:border-box}
+  html,body{margin:0;background:#eaf0f5;font-family:Arial,Helvetica,sans-serif;color:#14283d}
+  body{overflow:hidden}
+  #stage{width:1920px;height:1080px;position:absolute;transform-origin:top left;background:#fff;overflow:hidden}
+  .grid{position:absolute;inset:0;background-image:radial-gradient(#d5e4ee 1.4px,transparent 1.4px);background-size:38px 38px;opacity:.28}
+  .wash{position:absolute;inset:0;background:linear-gradient(122deg,#fff 0 62%,#eff8fd 62% 100%)}
+  .arc{position:absolute;width:940px;height:940px;border-radius:50%;right:-300px;top:-335px;background:radial-gradient(circle at 45% 50%,#fff 0 26%,#dff3fc 26% 42%,#c8eafb 42% 43%,transparent 43%);opacity:.82}
+  header{position:absolute;left:96px;top:64px;display:flex;gap:28px;align-items:center;z-index:5}
+  .mark{background:#003366;color:#fff;border-radius:18px;padding:16px 20px;font-size:32px;font-weight:800}
+  .brand{font-size:20px;letter-spacing:3px;color:#003366}
+  .scene{position:absolute;right:96px;top:86px;padding:13px 23px;border:1px solid #b8d6e8;border-radius:40px;color:#0055a4;background:#fff;font-size:19px;letter-spacing:2px;font-weight:700;z-index:5}
+  .copy{position:absolute;left:96px;top:218px;width:1040px;z-index:4}
+  .eyebrow{font-size:22px;letter-spacing:5px;color:#0055a4;font-weight:700;margin-bottom:25px}
+  h1{margin:0;color:#003366;font-size:100px;line-height:.94;letter-spacing:-5px;font-weight:800}
+  h1 .word{display:block;transform-origin:left center}
+  h1 .accent{color:#00aeef}
+  .subtitle{margin-top:35px;font-size:31px;line-height:1.35;color:#587287;letter-spacing:.2px}
+  .rule{margin-top:31px;width:170px;height:7px;border-radius:8px;background:#00aeef;transform-origin:left}
+  .seven-wrap{position:absolute;right:142px;top:164px;width:530px;height:580px;z-index:3}
+  .seven{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;color:#003366;font-size:470px;line-height:1;font-weight:800;letter-spacing:-40px;text-shadow:0 20px 60px #00336620}
+  .orbit{position:absolute;width:455px;height:455px;border:2px solid #83d3f2;border-radius:50%;left:48px;top:52px}
+  .orbit::before,.orbit::after{content:"";position:absolute;width:22px;height:22px;border-radius:50%;background:#00aeef;box-shadow:0 0 0 8px #fff,0 0 0 10px #bce6f6}
+  .orbit::before{left:44px;top:58px}.orbit::after{right:32px;bottom:78px}
+  .mini{position:absolute;right:52px;bottom:50px;color:#0055a4;font-size:20px;letter-spacing:3px;font-weight:700;transform:rotate(-90deg);transform-origin:right bottom}
+  .route{position:absolute;left:92px;right:92px;bottom:86px;height:238px;z-index:4}
+  .route svg{position:absolute;inset:0;width:100%;height:100%}
+  .route-base{fill:none;stroke:#d9e7f1;stroke-width:10;stroke-linecap:round}
+  .route-fill{fill:none;stroke:#00aeef;stroke-width:10;stroke-linecap:round;filter:drop-shadow(0 7px 9px #00aeef35)}
+  .nodes{position:absolute;inset:0}
+  .node{position:absolute;width:50px;height:50px;border-radius:50%;transform:translate(-50%,-50%);display:flex;align-items:center;justify-content:center;background:#e2edf5;border:6px solid #fff;box-shadow:0 0 0 3px #b7cddd,0 10px 24px #0033661c;color:#0055a4;font-size:20px;font-weight:800}
+  .closing{position:absolute;left:50%;bottom:26px;transform:translateX(-50%);color:#003366;font-size:23px;font-weight:700;letter-spacing:.5px;white-space:nowrap}
+  .progress{position:absolute;bottom:0;height:7px;background:#00aeef;width:1920px;transform-origin:left}
+  .controls{position:fixed;bottom:14px;left:50%;transform:translateX(-50%);display:flex;gap:10px;z-index:9}
+  button{padding:9px 18px;border:1px solid #b7cede;background:#fff;color:#003366;border-radius:20px;cursor:pointer}
+  body.capture .controls{display:none}
+  @media (prefers-reduced-motion:reduce){.orbit{transform:none!important}}
+</style>
+<body>
+<main id="stage">
+  <div class="wash"></div><div class="grid"></div><div class="arc"></div>
+  <header><div class="mark">LC</div><div class="brand">LANGUAGE<br>CENTER CHILE</div></header>
+  <div class="scene"></div>
+  <section class="copy">
+    <div class="eyebrow"></div>
+    <h1><span class="word"></span><span class="word"></span><span class="word accent"></span></h1>
+    <div class="subtitle"></div><div class="rule"></div>
+  </section>
+  <aside class="seven-wrap" aria-hidden="true"><div class="orbit"></div><div class="seven">7</div><div class="mini">PASOS</div></aside>
+  <section class="route" aria-label="Ruta de siete pasos">
+    <svg viewBox="0 0 1736 238" aria-hidden="true">
+      <path class="route-base" d="M80 148 C260 28 390 220 585 112 S905 42 1085 146 S1395 205 1652 82"/>
+      <path class="route-fill" d="M80 148 C260 28 390 220 585 112 S905 42 1085 146 S1395 205 1652 82"/>
+    </svg>
+    <div class="nodes"></div>
+  </section>
+  <div class="closing"></div><div class="progress"></div>
+</main>
+<div class="controls"><button id="pause">Pausa / Play</button><button id="restart">Reiniciar</button></div>
+{{GSAP_SCRIPT}}
+<script>
+  const spec={{SPEC_JSON}};
+  const nodePositions=[
+    {x:80,y:148},{x:340,y:116},{x:585,y:112},{x:825,y:91},
+    {x:1085,y:146},{x:1370,y:159},{x:1652,y:82}
+  ];
+  document.querySelector('.scene').textContent=spec.course;
+  document.querySelector('.eyebrow').textContent=spec.eyebrow;
+  [...document.querySelectorAll('.word')].forEach((el,index)=>el.textContent=spec.titleLines[index]);
+  document.querySelector('.subtitle').textContent=spec.subtitle;
+  document.querySelector('.closing').textContent=spec.closing;
+  const nodes=nodePositions.map((point,index)=>{
+    const node=document.createElement('div');
+    node.className='node';node.textContent=index+1;
+    node.style.left=point.x+'px';node.style.top=point.y+'px';
+    document.querySelector('.nodes').append(node);
+    return node;
+  });
+  const fill=document.querySelector('.route-fill');
+  const length=fill.getTotalLength();
+  const tl=gsap.timeline({paused:true,defaults:{ease:'power3.out'}});
+  gsap.set(['header','.scene'],{autoAlpha:.45,y:-18});
+  gsap.set('.eyebrow',{autoAlpha:.35,x:-30});
+  gsap.set('.word',{autoAlpha:.2,y:52,rotationX:-12});
+  gsap.set('.subtitle',{autoAlpha:0,y:22});
+  gsap.set('.rule',{scaleX:0});
+  gsap.set('.seven-wrap',{autoAlpha:.15,scale:.82,rotation:3});
+  gsap.set('.orbit',{rotation:-45});
+  gsap.set(fill,{strokeDasharray:length,strokeDashoffset:length});
+  gsap.set(nodes,{autoAlpha:.34,scale:.6});
+  gsap.set('.closing',{autoAlpha:0,y:16});
+  gsap.set('.progress',{scaleX:0});
+  tl.to(['header','.scene'],{autoAlpha:1,y:0,duration:.65},0)
+    .to('.eyebrow',{autoAlpha:1,x:0,duration:.65},.35)
+    .to('.word',{autoAlpha:1,y:0,rotationX:0,duration:.85,stagger:.22},.7)
+    .to('.seven-wrap',{autoAlpha:1,scale:1,rotation:0,duration:1.25,ease:'back.out(1.25)'},.8)
+    .to('.orbit',{rotation:25,duration:2.1,ease:'power2.out'},1)
+    .to(fill,{strokeDashoffset:0,duration:4.7,ease:'power2.inOut'},1.15)
+    .to('.subtitle',{autoAlpha:1,y:0,duration:.7},2.3)
+    .to('.rule',{scaleX:1,duration:.75},2.55);
+  nodes.forEach((node,index)=>{
+    const at=1.35+index*.56;
+    tl.to(node,{autoAlpha:1,scale:1.2,backgroundColor:'#00aeef',color:'#003366',boxShadow:'0 0 0 4px #00aeef, 0 12px 30px #00336620',duration:.28},at)
+      .to(node,{scale:1,backgroundColor:'#0055a4',color:'#fff',boxShadow:'0 0 0 3px #b7cddd, 0 10px 24px #0033661c',duration:.25},at+.31);
+  });
+  tl.to('.closing',{autoAlpha:1,y:0,duration:.65},5.65)
+    .to('.arc',{x:-26,y:18,scale:1.025,duration:1.4},5.75)
+    .to('.seven',{textShadow:'0 26px 72px #0033662e',duration:.8},6)
+    .to('.progress',{scaleX:1,duration:spec.duration,ease:'none'},0);
+  const update=()=>document.getElementById('pause').textContent=tl.paused()?'Play':'Pausa';
+  tl.eventCallback('onUpdate',update);
+  window.renderAt=t=>{tl.pause();tl.time(Math.max(0,Math.min(spec.duration,Number(t)||0)),false);update()};
+  window.animation=tl;
+  window.duration = spec.duration;
+  document.getElementById('pause').onclick=()=>tl.paused()?tl.play():tl.pause();
+  document.getElementById('restart').onclick=()=>tl.restart();
+  addEventListener('resize',()=>{const s=Math.min(innerWidth/1920,innerHeight/1080);document.getElementById('stage').style.transform=`scale(${s})`});
+  dispatchEvent(new Event('resize'));
+  if(location.search.includes('capture')){document.body.classList.add('capture');window.renderAt(0)}
+  else if(matchMedia('(prefers-reduced-motion: reduce)').matches){window.renderAt(spec.duration)}
+  else{tl.repeat(-1).repeatDelay(1).play()}
+</script>
+</body>
+</html>
