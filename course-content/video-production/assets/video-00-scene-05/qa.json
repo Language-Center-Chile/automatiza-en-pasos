@@ -1,0 +1,25 @@
+{
+  "width": 1920,
+  "height": 1080,
+  "duration": 8,
+  "fps": 24,
+  "audio": "none",
+  "qaTimes": [
+    0,
+    0.8,
+    3.2,
+    5.2,
+    7.2
+  ],
+  "frameHashes": [
+    "927d4760f5b8a118abaad1c7a7a52baa8b68fd3f8a5a2ea4aef6305f388cfb80",
+    "2692925e6cf95857e9508a28e42f86a802651306a933e826cf76724160d680b8",
+    "de7ede539d94003cf4e79223b7f7f9f165119bbee3db3e9afb06c9cd9d43e1e2",
+    "45729eeff1297962a4c26c6dd488a55b0f85a468b2e2c650555ba8dcd611e01c",
+    "0c39592a478bea861d1db5351d5adc0df3a63229f8dae8b83c51782e1959c87d"
+  ],
+  "rendered": true,
+  "measuredDuration": 8,
+  "frames": 192,
+  "sha256": "e4f80de9b8152a9f88831f3e2c336e43db61c86f4dcfc8b92bdc4ada5d32c9c2"
+}
