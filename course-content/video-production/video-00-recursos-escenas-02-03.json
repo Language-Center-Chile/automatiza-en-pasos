@@ -1,0 +1,124 @@
+{
+  "schemaVersion": 1,
+  "id": "lc_atn7p_v00_recursos_escenas_02_03",
+  "product": "Automatiza tu Negocio en 7 Pasos",
+  "video": "Video 00 · Bienvenida",
+  "status": "selected-metadata-verified-download-pending",
+  "verifiedAt": "2026-10-15",
+  "editorialRange": {
+    "start": "00:12",
+    "end": "00:53",
+    "durationSeconds": 41
+  },
+  "license": {
+    "provider": "Pexels",
+    "url": "https://www.pexels.com/license/",
+    "commercialUseAllowed": true,
+    "attributionRequired": false,
+    "verifiedAt": "2026-10-15",
+    "rules": [
+      "No sugerir que las personas o marcas representadas respaldan el curso.",
+      "No redistribuir ni vender el clip como material de stock independiente.",
+      "Revisar logos, marcas, pantallas y datos identificables antes del montaje final.",
+      "Conservar la procedencia aunque la atribución pública no sea obligatoria."
+    ]
+  },
+  "scenes": [
+    {
+      "scene": 2,
+      "editorialTimecode": "00:12-00:35",
+      "durationSeconds": 23,
+      "purpose": "Mostrar una tarea administrativa repetitiva antes de ordenarla.",
+      "selection": {
+        "provider": "Pexels",
+        "remoteId": 6699597,
+        "title": "A Man Working Indoors",
+        "description": "Businessman working on financial documents in an office setting, focused and professional.",
+        "author": "Tima Miroshnichenko",
+        "sourceUrl": "https://www.pexels.com/video/a-man-working-indoors-6699597/",
+        "downloadUrl": "https://videos.pexels.com/video-files/6699597/6699597-uhd_3840_2160_25fps.mp4",
+        "licenseUrl": "https://www.pexels.com/license/",
+        "retrievedAt": "2026-10-15",
+        "width": 3840,
+        "height": 2160,
+        "aspectRatio": "16:9",
+        "sourceDurationSeconds": 26,
+        "sourceFps": 25
+      },
+      "edit": {
+        "sourceInSeconds": 2,
+        "sourceOutSeconds": 14,
+        "clipOutputSeconds": 12,
+        "remainingSeconds": 11,
+        "remainingVisual": "Gráfico local de tres pasos: tarea repetida → proceso ordenado → resultado medible.",
+        "frameRate": 24,
+        "fit": "scale-to-1920x1080",
+        "audio": "remove",
+        "overlay": "De repetitivo a claro y medible",
+        "transitionOut": "match-cut from paperwork to the first node of the local diagram"
+      },
+      "acceptance": [
+        "No hay logos, marcas, nombres, montos ni datos legibles en el recorte usado.",
+        "La persona se presenta trabajando; el montaje no implica respaldo del curso.",
+        "El clip mantiene movimiento útil durante los 12 segundos seleccionados.",
+        "El cambio al gráfico ocurre antes de que la toma se vuelva repetitiva."
+      ]
+    },
+    {
+      "scene": 3,
+      "editorialTimecode": "00:35-00:53",
+      "durationSeconds": 18,
+      "purpose": "Representar la planificación de un proceso real en una pequeña empresa.",
+      "selection": {
+        "provider": "Pexels",
+        "remoteId": 7279475,
+        "title": "Starting Up a Small Business",
+        "description": "Developing a business strategy with notes and laptop on a wooden desk.",
+        "author": "Anastasia Shuraeva",
+        "sourceUrl": "https://www.pexels.com/video/starting-up-a-small-business-7279475/",
+        "downloadUrl": "https://videos.pexels.com/video-files/7279475/7279475-uhd_4096_2160_24fps.mp4",
+        "licenseUrl": "https://www.pexels.com/license/",
+        "retrievedAt": "2026-10-15",
+        "width": 4096,
+        "height": 2160,
+        "aspectRatio": "256:135",
+        "sourceDurationSeconds": 21,
+        "sourceFps": 24
+      },
+      "edit": {
+        "sourceInSeconds": 1.5,
+        "sourceOutSeconds": 19.5,
+        "clipOutputSeconds": 18,
+        "remainingSeconds": 0,
+        "frameRate": 24,
+        "fit": "center-crop-4096x2160-to-3840x2160-then-scale-to-1920x1080",
+        "audio": "remove",
+        "overlay": "Un proceso real",
+        "transitionOut": "short dissolve into scene 04"
+      },
+      "acceptance": [
+        "El recorte central conserva manos, libreta y computador sin cortar la acción principal.",
+        "No hay logos, marcas, nombres, correos ni datos legibles en el recorte usado.",
+        "La imagen comunica planificación y no promete un resultado comercial.",
+        "La toma mantiene movimiento natural durante los 18 segundos seleccionados."
+      ]
+    }
+  ],
+  "packaging": {
+    "downloadOnlyDuringProduction": true,
+    "commitRawClips": false,
+    "temporaryFiles": [
+      "output/assets/pexels/scene-02-6699597.mp4",
+      "output/assets/pexels/scene-03-7279475.mp4"
+    ],
+    "requiredEvidenceAfterDownload": [
+      "SHA-256 de cada archivo descargado",
+      "ffprobe con resolución, duración, FPS y códec",
+      "contact sheet del intervalo elegido",
+      "confirmación manual de ausencia de logos y datos identificables",
+      "MP4 del montaje de escenas 01-05 con audio separado"
+    ]
+  },
+  "decisionPending": "Katherine debe aprobar estos dos clips como base visual de las escenas 02 y 03 antes de descargarlos e incorporarlos al piloto.",
+  "nextStep": "Descargar ambos clips en la carpeta temporal ignorada, verificar cuadros y procedencia, y ensamblar el piloto de 88 segundos con las escenas 01, 04 y 05 ya preparadas."
+}
