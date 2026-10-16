@@ -1,0 +1,23 @@
+{
+  "id": "lc_atn7p_v00_escena_02_transicion",
+  "course": "AUTOMATIZA TU NEGOCIO EN 7 PASOS",
+  "title": "De repetitivo a claro y medible",
+  "subtitle": "Una tarea deja de ser ruido cuando puedes ver sus pasos y comprobar el resultado.",
+  "before": {
+    "label": "ANTES",
+    "title": "Tarea repetida",
+    "items": ["Copiar", "Buscar", "Corregir"]
+  },
+  "after": {
+    "label": "DESPUÉS",
+    "title": "Proceso visible",
+    "steps": ["Entrada", "Acción", "Evidencia"]
+  },
+  "closing": "Elige una tarea · ordena el proceso · define cómo medirlo",
+  "duration": 11,
+  "fps": 24,
+  "width": 1920,
+  "height": 1080,
+  "lang": "es-CL",
+  "audio": "none"
+}

@@ -1,0 +1,33 @@
+<!doctype html>
+<html lang="es-CL">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>De repetitivo a claro y medible · Language Center Chile</title>
+  <style>
+    *{box-sizing:border-box}html,body{margin:0;width:100%;height:100%;overflow:hidden;background:#eaf0f5;font-family:Arial,Helvetica,sans-serif}
+    body{display:grid;place-items:center}canvas{display:block;max-width:100vw;max-height:100vh;box-shadow:0 18px 60px #00336622}
+    .controls{position:fixed;left:50%;bottom:16px;transform:translateX(-50%);display:flex;gap:10px}.controls button{border:1px solid #b7cede;border-radius:999px;background:#fff;color:#003366;padding:10px 18px;font-weight:700;cursor:pointer}body.capture .controls{display:none}
+  </style>
+</head>
+<body>
+<canvas id="stage" width="1920" height="1080" aria-label="Transición visual desde una tarea repetitiva hacia un proceso claro y medible"></canvas>
+<div class="controls"><button id="pause">Pausa / Play</button><button id="restart">Reiniciar</button></div>
+<script src="scene.js"></script>
+<script>
+const spec={duration:11};
+const canvas=document.querySelector('#stage'),ctx=canvas.getContext('2d');
+function fit(){const scale=Math.min(innerWidth/1920,innerHeight/1080);canvas.style.width=`${1920*scale}px`;canvas.style.height=`${1080*scale}px`}
+fit();addEventListener('resize',fit);
+let current=0,running=false,started=0,raf=0;
+function renderAt(input){current=Math.max(0,Math.min(spec.duration,Number(input)||0));Scene02.drawFrame(ctx,current)}
+function frame(now){if(!running)return;current=(now-started)%12000/1000;renderAt(Math.min(current,11));raf=requestAnimationFrame(frame)}
+function play(){if(running)return;running=true;started=performance.now()-current*1000;raf=requestAnimationFrame(frame)}
+function pause(){running=false;cancelAnimationFrame(raf)}
+document.querySelector('#pause').onclick=()=>running?pause():play();
+document.querySelector('#restart').onclick=()=>{pause();renderAt(0);play()};
+window.renderAt=renderAt;window.duration=spec.duration;window.animation={time:()=>current,paused:()=>!running,pause,play};
+if(location.search.includes('capture')){document.body.classList.add('capture');renderAt(0)}else if(matchMedia('(prefers-reduced-motion: reduce)').matches){renderAt(spec.duration)}else{renderAt(0);play()}
+</script>
+</body>
+</html>
