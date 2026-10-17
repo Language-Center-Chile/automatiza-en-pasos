@@ -1,0 +1,109 @@
+1
+00:00:00,250 --> 00:00:11,650
+Hola, te doy la bienvenida a
+Automatiza tu Negocio en 7 Pasos.
+
+2
+00:00:12,250 --> 00:00:15,634
+Este programa fue creado
+para ayudarte a transformar
+
+3
+00:00:15,734 --> 00:00:17,947
+una tarea repetitiva de tu negocio
+
+4
+00:00:18,047 --> 00:00:22,212
+en un proceso más claro, medible
+y preparado para automatizarse.
+
+5
+00:00:22,312 --> 00:00:24,199
+No necesitas saber programar.
+
+6
+00:00:24,299 --> 00:00:28,008
+Tampoco necesitas comenzar
+comprando nuevas herramientas.
+
+7
+00:00:28,108 --> 00:00:30,971
+Lo más importante es entender
+qué haces hoy,
+
+8
+00:00:31,071 --> 00:00:34,650
+dónde se pierde tiempo y
+qué resultado quieres mejorar.
+
+9
+00:00:35,250 --> 00:00:39,387
+Durante el curso trabajarás
+sobre un solo proceso real.
+
+10
+00:00:39,487 --> 00:00:42,120
+Puede ser el registro de consultas,
+
+11
+00:00:42,220 --> 00:00:45,078
+el seguimiento de clientes, la agenda,
+
+12
+00:00:45,178 --> 00:00:49,165
+el envío de información,
+la preparación de documentos
+
+13
+00:00:49,265 --> 00:00:52,650
+o cualquier tarea que repitas
+con frecuencia.
+
+14
+00:00:53,250 --> 00:00:56,046
+Primero vas a observar y ordenar
+ese proceso.
+
+15
+00:00:56,146 --> 00:00:58,631
+Después crearás una base
+de seguimiento,
+
+16
+00:00:58,731 --> 00:01:01,962
+explorarás usos concretos
+de inteligencia artificial
+
+17
+00:01:02,062 --> 00:01:03,802
+y diseñarás un flujo básico.
+
+18
+00:01:03,902 --> 00:01:06,325
+Finalmente, probarás
+una versión mínima
+
+19
+00:01:06,425 --> 00:01:08,724
+y definirás cómo medirla
+y mejorarla.
+
+20
+00:01:08,824 --> 00:01:12,304
+La meta no es automatizar
+todo tu negocio en una semana.
+
+21
+00:01:12,404 --> 00:01:16,629
+La meta es terminar con una primera
+solución entendible, verificable
+
+22
+00:01:16,729 --> 00:01:19,650
+y que puedas seguir desarrollando
+con criterio.
+
+23
+00:01:20,250 --> 00:01:27,650
+La ruta está organizada
+en siete pasos.
