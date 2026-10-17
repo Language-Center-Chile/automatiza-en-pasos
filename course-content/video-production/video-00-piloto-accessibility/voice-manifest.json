@@ -1,0 +1,94 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Video 00 — paquete de locución y subtítulos",
+  "language": "es-CL",
+  "durationSeconds": 88,
+  "source": {
+    "repository": "Language-Center-Chile/automatiza-en-pasos",
+    "branch": "agent/animacion-video00-escena02",
+    "commit": "3560bb55815278d1e554193078a7154e900e0787",
+    "manifest": "course-content/video-production/video-00-piloto-escenas-01-05.json"
+  },
+  "voice": {
+    "candidate": "es-CL-CatalinaNeural",
+    "ratePercent": -1,
+    "approved": false,
+    "audioGenerated": false,
+    "note": "Candidata heredada del manifiesto audiovisual; requiere aprobación de Katherine antes de generar audio."
+  },
+  "subtitlePolicy": {
+    "format": "SubRip",
+    "encoding": "UTF-8",
+    "maxLinesPerCue": 2,
+    "maxCharactersPerLine": 42,
+    "maxCharactersPerSecond": 18,
+    "gapMilliseconds": 100,
+    "burnInForPilot": true
+  },
+  "scenes": [
+    {
+      "id": "scene-01",
+      "startSeconds": 0,
+      "endSeconds": 12,
+      "text": "Hola, te doy la bienvenida a Automatiza tu Negocio en 7 Pasos.",
+      "captions": [
+        ["Hola, te doy la bienvenida a", "Automatiza tu Negocio en 7 Pasos."]
+      ]
+    },
+    {
+      "id": "scene-02",
+      "startSeconds": 12,
+      "endSeconds": 35,
+      "text": "Este programa fue creado para ayudarte a transformar una tarea repetitiva de tu negocio en un proceso más claro, medible y preparado para automatizarse. No necesitas saber programar. Tampoco necesitas comenzar comprando nuevas herramientas. Lo más importante es entender qué haces hoy, dónde se pierde tiempo y qué resultado quieres mejorar.",
+      "captions": [
+        ["Este programa fue creado", "para ayudarte a transformar"],
+        ["una tarea repetitiva de tu negocio"],
+        ["en un proceso más claro, medible", "y preparado para automatizarse."],
+        ["No necesitas saber programar."],
+        ["Tampoco necesitas comenzar", "comprando nuevas herramientas."],
+        ["Lo más importante es entender", "qué haces hoy,"],
+        ["dónde se pierde tiempo y", "qué resultado quieres mejorar."]
+      ]
+    },
+    {
+      "id": "scene-03",
+      "startSeconds": 35,
+      "endSeconds": 53,
+      "text": "Durante el curso trabajarás sobre un solo proceso real. Puede ser el registro de consultas, el seguimiento de clientes, la agenda, el envío de información, la preparación de documentos o cualquier tarea que repitas con frecuencia.",
+      "captions": [
+        ["Durante el curso trabajarás", "sobre un solo proceso real."],
+        ["Puede ser el registro de consultas,"],
+        ["el seguimiento de clientes, la agenda,"],
+        ["el envío de información,", "la preparación de documentos"],
+        ["o cualquier tarea que repitas", "con frecuencia."]
+      ]
+    },
+    {
+      "id": "scene-04",
+      "startSeconds": 53,
+      "endSeconds": 80,
+      "text": "Primero vas a observar y ordenar ese proceso. Después crearás una base de seguimiento, explorarás usos concretos de inteligencia artificial y diseñarás un flujo básico. Finalmente, probarás una versión mínima y definirás cómo medirla y mejorarla. La meta no es automatizar todo tu negocio en una semana. La meta es terminar con una primera solución entendible, verificable y que puedas seguir desarrollando con criterio.",
+      "captions": [
+        ["Primero vas a observar y ordenar", "ese proceso."],
+        ["Después crearás una base", "de seguimiento,"],
+        ["explorarás usos concretos", "de inteligencia artificial"],
+        ["y diseñarás un flujo básico."],
+        ["Finalmente, probarás", "una versión mínima"],
+        ["y definirás cómo medirla", "y mejorarla."],
+        ["La meta no es automatizar", "todo tu negocio en una semana."],
+        ["La meta es terminar con una primera", "solución entendible, verificable"],
+        ["y que puedas seguir desarrollando", "con criterio."]
+      ]
+    },
+    {
+      "id": "scene-05",
+      "startSeconds": 80,
+      "endSeconds": 88,
+      "text": "La ruta está organizada en siete pasos.",
+      "captions": [
+        ["La ruta está organizada", "en siete pasos."]
+      ]
+    }
+  ],
+  "decision": "¿Apruebas la voz es-CL-CatalinaNeural, ritmo -1 % y mezcla propuesta como estándar del piloto?"
+}
