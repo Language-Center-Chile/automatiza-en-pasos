@@ -1,0 +1,125 @@
+{
+  "schemaVersion": 1,
+  "id": "lc_atn7p_v00_piloto_packaging",
+  "product": "Automatiza tu Negocio en 7 Pasos",
+  "video": "Video 00 · Bienvenida",
+  "status": "ready-for-controlled-assembly",
+  "editorialDurationSeconds": 88,
+  "output": {
+    "file": "output/review/LC_ATN7P_V00_PILOTO_16x9_review.mp4",
+    "sidecarSubtitles": "output/review/LC_ATN7P_V00_PILOTO_es-CL.srt",
+    "width": 1920,
+    "height": 1080,
+    "framesPerSecond": 24,
+    "videoCodec": "h264",
+    "pixelFormat": "yuv420p",
+    "audioCodec": "aac",
+    "audioSampleRate": 48000,
+    "audioChannels": 2,
+    "targetLoudnessLufs": -16,
+    "truePeakDbtp": -1,
+    "publicationAllowed": false
+  },
+  "visualTrack": [
+    {
+      "order": 1,
+      "id": "scene-01-opening",
+      "timelineInSeconds": 0,
+      "timelineOutSeconds": 12,
+      "durationSeconds": 12,
+      "source": "input/video-00/scene-01-opening.mp4",
+      "sourceInSeconds": 0,
+      "kind": "local-animation",
+      "origin": "course-content/video-production/assets/video-00-scene-01"
+    },
+    {
+      "order": 2,
+      "id": "scene-02-pexels",
+      "timelineInSeconds": 12,
+      "timelineOutSeconds": 24,
+      "durationSeconds": 12,
+      "source": "input/video-00/scene-02-pexels-6699597.mp4",
+      "sourceInSeconds": 2,
+      "kind": "licensed-stock",
+      "origin": "https://www.pexels.com/video/a-man-working-indoors-6699597/",
+      "license": "https://www.pexels.com/license/",
+      "audio": "remove"
+    },
+    {
+      "order": 3,
+      "id": "scene-02-transition",
+      "timelineInSeconds": 24,
+      "timelineOutSeconds": 35,
+      "durationSeconds": 11,
+      "source": "input/video-00/scene-02-transition.mp4",
+      "sourceInSeconds": 0,
+      "kind": "local-animation",
+      "origin": "course-content/video-production/assets/video-00-scene-02-transition"
+    },
+    {
+      "order": 4,
+      "id": "scene-03-pexels",
+      "timelineInSeconds": 35,
+      "timelineOutSeconds": 53,
+      "durationSeconds": 18,
+      "source": "input/video-00/scene-03-pexels-7279475.mp4",
+      "sourceInSeconds": 1.5,
+      "kind": "licensed-stock",
+      "origin": "https://www.pexels.com/video/starting-up-a-small-business-7279475/",
+      "license": "https://www.pexels.com/license/",
+      "audio": "remove"
+    },
+    {
+      "order": 5,
+      "id": "scene-04-method",
+      "timelineInSeconds": 53,
+      "timelineOutSeconds": 80,
+      "durationSeconds": 27,
+      "source": "input/video-00/scene-04-method.mp4",
+      "sourceInSeconds": 0,
+      "kind": "local-animation",
+      "origin": "course-content/video-production/assets/video-00-scene-04"
+    },
+    {
+      "order": 6,
+      "id": "scene-05-route",
+      "timelineInSeconds": 80,
+      "timelineOutSeconds": 88,
+      "durationSeconds": 8,
+      "source": "input/video-00/scene-05-route.mp4",
+      "sourceInSeconds": 0,
+      "kind": "local-animation",
+      "origin": "course-content/video-production/assets/video-00-scene-05"
+    }
+  ],
+  "narrationTrack": {
+    "source": "input/video-00/voice-es-CL-CatalinaNeural-rate-minus-1.wav",
+    "language": "es-CL",
+    "candidate": "es-CL-CatalinaNeural",
+    "ratePercent": -1,
+    "approved": false,
+    "requiredForAssembly": true
+  },
+  "subtitleTrack": {
+    "source": "course-content/video-production/video-00-piloto-accessibility/video-00-piloto-es-CL.srt",
+    "language": "es-CL",
+    "burnInReviewCopy": true,
+    "sidecarRequired": true
+  },
+  "musicTrack": {
+    "enabled": false,
+    "source": null
+  },
+  "reviewGate": {
+    "renderBlockedUntilDecision": true,
+    "decision": "¿Apruebas usar los clips Pexels 6699597 y 7279475 junto con la voz es-CL-CatalinaNeural a ritmo -1 % para el montaje piloto de 88 segundos?",
+    "requiredEvidence": [
+      "SHA-256 y ffprobe de los seis recursos visuales",
+      "contact sheet de ambos intervalos Pexels sin logos ni datos identificables",
+      "medición de duración total de 88 segundos con tolerancia de 0,2 segundos",
+      "medición de voz a -16 LUFS y pico verdadero máximo de -1 dBTP",
+      "SRT lateral y copia de revisión con subtítulos incrustados",
+      "revisión manual en escritorio y móvil"
+    ]
+  }
+}
