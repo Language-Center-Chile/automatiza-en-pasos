@@ -195,6 +195,7 @@
       <div class="faq__item is-open">
         <button class="faq__q" aria-expanded="true"><span>¿Necesito saber programar?</span><svg class="faq__chev" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg></button>
         <div class="faq__a"><p>No. Todo el curso es sin código: armas tu sistema con herramientas guiadas (CRM, IA, n8n) paso a paso. Si sabes usar Excel y WhatsApp, puedes hacerlo.</p></div>
+      </div>
       <div class="faq__item">
         <button class="faq__q" aria-expanded="false"><span>¿Es solo para empresas grandes?</span><svg class="faq__chev" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg></button>
         <div class="faq__a"><p>No. Está pensado para dueños de pyme y emprendedores. Las empresas con equipo tienen además planes a medida.</p></div>
@@ -248,6 +249,8 @@
       1) Formspree (más fácil): crea un form en formspree.io y reemplaza la URL del action.
       2) Google Sheet: publica un Apps Script como web app y apunta el action ahí.
       3) n8n: crea un webhook y úsalo como action.
+      Antes de habilitar: aprobar el aviso de datos, configurar el destino oficial,
+      probar la recepción y confirmar el procedimiento de acceso/corrección/eliminación.
       Mientras no esté conectado, el formulario muestra un aviso (ver script.js).
     -->
     <form class="form" id="lead-form" action="https://formspree.io/f/REEMPLAZAR_ID" method="POST" novalidate>
@@ -256,7 +259,7 @@
         <label class="field"><span>Email</span><input type="email" name="email" required autocomplete="email" placeholder="tu@correo.com"></label>
       </div>
       <div class="form__row">
-        <label class="field"><span>WhatsApp</span><input type="tel" name="whatsapp" required autocomplete="tel" placeholder="+56 9 ..."></label>
+        <label class="field"><span>WhatsApp <em>(opcional)</em></span><input type="tel" name="whatsapp" autocomplete="tel" placeholder="+56 9 ..."></label>
         <label class="field"><span>Tipo de negocio</span>
           <select name="tipo_negocio">
             <option value="">Selecciona…</option>
@@ -277,6 +280,15 @@
         </select>
       </label>
       <label class="field"><span>Cuéntanos brevemente tu caso <em>(opcional)</em></span><textarea name="mensaje" rows="3" placeholder="¿Qué proceso te gustaría automatizar?"></textarea></label>
+      <label class="form__consent">
+        <input type="checkbox" name="consentimiento_contacto" value="si" required>
+        <span>Autorizo a Language Center Chile a usar estos datos únicamente para responder mi solicitud y dar seguimiento relacionado con el programa. Esto no autoriza publicidad ni cobros.</span>
+      </label>
+      <details class="form__privacy" id="form-privacy-note">
+        <summary>Cómo usaremos tus datos</summary>
+        <p>Usaremos tu nombre y correo —y los datos opcionales que entregues— para responder esta solicitud y continuar la conversación sobre el programa.</p>
+        <p>No enviaremos estos datos a analítica ni los usaremos para cobrar. Puedes solicitar acceso, corrección o eliminación escribiendo a <a href="mailto:contacto@languagecenterchile.com">contacto@languagecenterchile.com</a>.</p>
+      </details>
       <button type="submit" class="btn btn--primary btn--block">Registrar interés</button>
       <p class="form__status" id="form-status" role="status" aria-live="polite"></p>
     </form>
