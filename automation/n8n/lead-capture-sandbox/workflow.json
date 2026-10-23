@@ -1,0 +1,183 @@
+{
+  "name": "LC — Captación 7 Pasos — Sandbox (INACTIVO)",
+  "nodes": [
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "lc-automatiza-captacion-sandbox",
+        "authentication": "none",
+        "responseMode": "responseNode",
+        "options": {
+          "allowedOrigins": "REEMPLAZAR_ORIGEN_LANDING_SANDBOX"
+        }
+      },
+      "id": "3a9a9792-4c8e-49a1-8b2f-fd29c11e1c9e",
+      "name": "Webhook — Captación sandbox",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2,
+      "position": [-760, 20],
+      "webhookId": "c4b4295a-e23d-4fc7-94fc-d28693bb850c"
+    },
+    {
+      "parameters": {
+        "jsCode": "const input = $input.first().json;\nconst body = input && typeof input.body === 'object' && input.body !== null ? input.body : input;\nconst headers = input && typeof input.headers === 'object' && input.headers !== null ? input.headers : {};\nconst permitted = new Set(['nombre', 'email', 'whatsapp', 'tipo_negocio', 'plan_interes', 'mensaje', 'consentimiento_contacto', 'request_id']);\nconst ignoredFields = Object.keys(body || {}).filter((key) => !permitted.has(key));\nconst clean = (value) => typeof value === 'string' ? value.trim() : '';\nconst nombre = clean(body.nombre).replace(/\\s+/g, ' ');\nconst email = clean(body.email).toLowerCase();\nconst whatsapp = clean(body.whatsapp);\nconst tipoNegocio = clean(body.tipo_negocio);\nconst planInteres = clean(body.plan_interes);\nconst mensaje = clean(body.mensaje);\nconst consentimiento = clean(body.consentimiento_contacto);\nconst allowedBusinessTypes = new Set(['', 'Emprendedor / pyme', 'Consultor / agencia', 'Instituto / servicios', 'Equipo administrativo', 'Otro']);\nconst allowedPlans = new Set(['', 'Pro', 'Empresa', 'Aún no lo sé']);\nconst issues = [];\nif (nombre.length < 2 || nombre.length > 100) issues.push('nombre');\nif (!/^[^\\s@]+@[^\\s@]+\\.[^\\s@]+$/.test(email) || email.length > 254) issues.push('email');\nif (consentimiento !== 'si') issues.push('consentimiento_contacto');\nif (whatsapp && (!/^[+0-9() .-]{7,30}$/.test(whatsapp))) issues.push('whatsapp');\nif (!allowedBusinessTypes.has(tipoNegocio)) issues.push('tipo_negocio');\nif (!allowedPlans.has(planInteres)) issues.push('plan_interes');\nif (mensaje.length > 1000) issues.push('mensaje');\nconst headerRequestId = clean(headers['x-request-id'] || headers['X-Request-Id']);\nconst bodyRequestId = clean(body.request_id);\nconst suppliedRequestId = headerRequestId || bodyRequestId;\nif (suppliedRequestId && !/^[A-Za-z0-9._:-]{8,128}$/.test(suppliedRequestId)) issues.push('request_id');\nconst requestId = suppliedRequestId || ('req_sandbox_' + Date.now().toString(36) + '_' + Math.random().toString(36).slice(2, 10));\nconst hash = (text) => { let value = 2166136261; for (let i = 0; i < text.length; i += 1) { value ^= text.charCodeAt(i); value = Math.imul(value, 16777619); } return (value >>> 0).toString(16).padStart(8, '0'); };\nconst leadId = 'lead_' + hash(requestId);\nconst valid = issues.length === 0;\nif (!valid) {\n  return [{ json: { valid: false, status_code: 422, response: { ok: false, error: 'invalid_submission', invalid_fields: [...new Set(issues)], request_id: requestId } } }];\n}\nreturn [{ json: { valid: true, lead_id: leadId, request_id: requestId, received_at: new Date().toISOString(), fuente: 'landing_7_pasos', nombre, email, whatsapp, tipo_negocio: tipoNegocio, plan_interes: planInteres, mensaje, consentimiento_contacto: 'si', consent_version: 'candidate_pr35_2026-10-21', ignored_fields: ignoredFields } }];"
+      },
+      "id": "7fdba40e-0d07-4f43-a3b3-ce04545b3b4d",
+      "name": "Validar y normalizar",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [-520, 20]
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 2
+          },
+          "conditions": [
+            {
+              "id": "b0b91512-fcca-487f-a5d5-128aa9ae2237",
+              "leftValue": "={{ $json.valid }}",
+              "rightValue": true,
+              "operator": {
+                "type": "boolean",
+                "operation": "true",
+                "singleValue": true
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "id": "b5f9025d-0cd6-415f-a6ba-87a2e67a1eeb",
+      "name": "¿Solicitud válida?",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.2,
+      "position": [-280, 20]
+    },
+    {
+      "parameters": {
+        "operation": "upsert",
+        "dataTableId": {
+          "__rl": true,
+          "value": "REEMPLAZAR_DATA_TABLE_ID",
+          "mode": "id"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "lead_id": "={{ $json.lead_id }}",
+            "request_id": "={{ $json.request_id }}",
+            "received_at": "={{ $json.received_at }}",
+            "fuente": "={{ $json.fuente }}",
+            "nombre": "={{ $json.nombre }}",
+            "email": "={{ $json.email }}",
+            "whatsapp": "={{ $json.whatsapp }}",
+            "tipo_negocio": "={{ $json.tipo_negocio }}",
+            "plan_interes": "={{ $json.plan_interes }}",
+            "mensaje": "={{ $json.mensaje }}",
+            "consentimiento_contacto": "={{ $json.consentimiento_contacto }}",
+            "consent_version": "={{ $json.consent_version }}"
+          },
+          "matchingColumns": ["request_id"],
+          "schema": [
+            {"id": "lead_id", "displayName": "lead_id", "required": true, "defaultMatch": false, "display": true, "type": "string", "canBeUsedToMatch": true},
+            {"id": "request_id", "displayName": "request_id", "required": true, "defaultMatch": true, "display": true, "type": "string", "canBeUsedToMatch": true},
+            {"id": "received_at", "displayName": "received_at", "required": true, "defaultMatch": false, "display": true, "type": "dateTime", "canBeUsedToMatch": true},
+            {"id": "fuente", "displayName": "fuente", "required": true, "defaultMatch": false, "display": true, "type": "string", "canBeUsedToMatch": true},
+            {"id": "nombre", "displayName": "nombre", "required": true, "defaultMatch": false, "display": true, "type": "string", "canBeUsedToMatch": true},
+            {"id": "email", "displayName": "email", "required": true, "defaultMatch": false, "display": true, "type": "string", "canBeUsedToMatch": true},
+            {"id": "whatsapp", "displayName": "whatsapp", "required": false, "defaultMatch": false, "display": true, "type": "string", "canBeUsedToMatch": true},
+            {"id": "tipo_negocio", "displayName": "tipo_negocio", "required": false, "defaultMatch": false, "display": true, "type": "string", "canBeUsedToMatch": true},
+            {"id": "plan_interes", "displayName": "plan_interes", "required": false, "defaultMatch": false, "display": true, "type": "string", "canBeUsedToMatch": true},
+            {"id": "mensaje", "displayName": "mensaje", "required": false, "defaultMatch": false, "display": true, "type": "string", "canBeUsedToMatch": true},
+            {"id": "consentimiento_contacto", "displayName": "consentimiento_contacto", "required": true, "defaultMatch": false, "display": true, "type": "string", "canBeUsedToMatch": true},
+            {"id": "consent_version", "displayName": "consent_version", "required": true, "defaultMatch": false, "display": true, "type": "string", "canBeUsedToMatch": true}
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        },
+        "options": {}
+      },
+      "id": "779efac7-17df-44ed-996b-40eb80bddda7",
+      "name": "Guardar lead idempotente",
+      "type": "n8n-nodes-base.dataTable",
+      "typeVersion": 1.1,
+      "position": [-20, -80]
+    },
+    {
+      "parameters": {
+        "respondWith": "json",
+        "responseBody": "={{ JSON.stringify({ ok: true, status: 'accepted', lead_id: $json.lead_id, request_id: $json.request_id }) }}",
+        "options": {
+          "responseCode": 202,
+          "responseHeaders": {
+            "entries": [
+              {"name": "Cache-Control", "value": "no-store"},
+              {"name": "X-Content-Type-Options", "value": "nosniff"}
+            ]
+          }
+        }
+      },
+      "id": "c5a41ef0-4e45-4375-aa8d-9e5e89952669",
+      "name": "Responder aceptado",
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1.4,
+      "position": [240, -80]
+    },
+    {
+      "parameters": {
+        "respondWith": "json",
+        "responseBody": "={{ JSON.stringify($json.response) }}",
+        "options": {
+          "responseCode": "={{ $json.status_code }}",
+          "responseHeaders": {
+            "entries": [
+              {"name": "Cache-Control", "value": "no-store"},
+              {"name": "X-Content-Type-Options", "value": "nosniff"}
+            ]
+          }
+        }
+      },
+      "id": "7dde2399-c1dd-49f0-90fc-a99de479fb05",
+      "name": "Responder rechazado",
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1.4,
+      "position": [-20, 120]
+    }
+  ],
+  "connections": {
+    "Webhook — Captación sandbox": {
+      "main": [[{"node": "Validar y normalizar", "type": "main", "index": 0}]]
+    },
+    "Validar y normalizar": {
+      "main": [[{"node": "¿Solicitud válida?", "type": "main", "index": 0}]]
+    },
+    "¿Solicitud válida?": {
+      "main": [
+        [{"node": "Guardar lead idempotente", "type": "main", "index": 0}],
+        [{"node": "Responder rechazado", "type": "main", "index": 0}]
+      ]
+    },
+    "Guardar lead idempotente": {
+      "main": [[{"node": "Responder aceptado", "type": "main", "index": 0}]]
+    }
+  },
+  "pinData": {},
+  "active": false,
+  "settings": {
+    "executionOrder": "v1",
+    "saveManualExecutions": false,
+    "saveDataSuccessExecution": "none",
+    "saveDataErrorExecution": "none",
+    "executionTimeout": 60
+  },
+  "meta": {
+    "templateCredsSetupCompleted": false
+  },
+  "tags": []
+}
