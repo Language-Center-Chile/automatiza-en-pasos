@@ -1,0 +1,102 @@
+[
+  {
+    "name": "mínimo válido",
+    "body": {
+      "nombre": "  QA   Formulario 001  ",
+      "email": "QA+CAPTACION@EXAMPLE.INVALID",
+      "consentimiento_contacto": "si",
+      "request_id": "qa-request-0001"
+    },
+    "expectValid": true,
+    "expect": {
+      "nombre": "QA Formulario 001",
+      "email": "qa+captacion@example.invalid",
+      "fuente": "landing_7_pasos"
+    }
+  },
+  {
+    "name": "todos los campos válidos",
+    "body": {
+      "nombre": "QA Formulario 002",
+      "email": "qa+completo@example.invalid",
+      "whatsapp": "+56 9 0000 0000",
+      "tipo_negocio": "Emprendedor / pyme",
+      "plan_interes": "Aún no lo sé",
+      "mensaje": "Prueba controlada; no contactar",
+      "consentimiento_contacto": "si",
+      "request_id": "qa-request-0002"
+    },
+    "expectValid": true
+  },
+  {
+    "name": "consentimiento ausente",
+    "body": {
+      "nombre": "QA Formulario 003",
+      "email": "qa+sin-consentimiento@example.invalid",
+      "request_id": "qa-request-0003"
+    },
+    "expectValid": false,
+    "expectInvalidField": "consentimiento_contacto"
+  },
+  {
+    "name": "correo inválido",
+    "body": {
+      "nombre": "QA Formulario 004",
+      "email": "correo-invalido",
+      "consentimiento_contacto": "si",
+      "request_id": "qa-request-0004"
+    },
+    "expectValid": false,
+    "expectInvalidField": "email"
+  },
+  {
+    "name": "opción manipulada",
+    "body": {
+      "nombre": "QA Formulario 005",
+      "email": "qa+opcion@example.invalid",
+      "tipo_negocio": "Administrador total",
+      "consentimiento_contacto": "si",
+      "request_id": "qa-request-0005"
+    },
+    "expectValid": false,
+    "expectInvalidField": "tipo_negocio"
+  },
+  {
+    "name": "campo inesperado ignorado",
+    "body": {
+      "nombre": "QA Formulario 006",
+      "email": "qa+campo@example.invalid",
+      "consentimiento_contacto": "si",
+      "request_id": "qa-request-0006",
+      "precio": "1"
+    },
+    "expectValid": true,
+    "expectIgnoredField": "precio"
+  },
+  {
+    "name": "mensaje extenso rechazado",
+    "body": {
+      "nombre": "QA Formulario 007",
+      "email": "qa+largo@example.invalid",
+      "mensajeRepeat": {"character": "x", "count": 1001},
+      "consentimiento_contacto": "si",
+      "request_id": "qa-request-0007"
+    },
+    "expectValid": false,
+    "expectInvalidField": "mensaje"
+  },
+  {
+    "name": "HTML tratado como texto",
+    "body": {
+      "nombre": "QA Formulario 008",
+      "email": "qa+html@example.invalid",
+      "mensaje": "<script>globalThis.comprometido=true</script>",
+      "consentimiento_contacto": "si",
+      "request_id": "qa-request-0008"
+    },
+    "expectValid": true,
+    "expect": {
+      "mensaje": "<script>globalThis.comprometido=true</script>"
+    }
+  }
+]
