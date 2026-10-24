@@ -40,12 +40,30 @@
     if (item.classList.contains("is-open")) setOpen(item, true);
   });
 
+  function createRequestId() {
+    if (window.crypto && typeof window.crypto.randomUUID === "function") {
+      return "req_" + window.crypto.randomUUID();
+    }
+    return "req_" + Date.now().toString(36) + "_" + Math.random().toString(36).slice(2, 14);
+  }
+
   /* ---------- Formulario de leads ---------- */
   var form = document.getElementById("lead-form");
   var status = document.getElementById("form-status");
   if (form && status) {
+    var requestId = null;
+    var submitting = false;
+    var submitButton = form.querySelector("button[type='submit'], input[type='submit']");
+
+    function setSubmitting(value) {
+      submitting = value;
+      form.setAttribute("aria-busy", value ? "true" : "false");
+      if (submitButton) submitButton.disabled = value;
+    }
+
     form.addEventListener("submit", function (e) {
       e.preventDefault();
+      if (submitting) return;
       status.className = "form__status";
 
       // Validación básica
@@ -57,28 +75,54 @@
       }
 
       // ¿El formulario todavía no está conectado a un destino?
-      if (form.action.indexOf("REEMPLAZAR_ID") !== -1) {
+      if (form.action.indexOf("REEMPLAZAR") !== -1) {
         status.textContent = "El registro todavía no está habilitado. Puedes escribir a contacto@languagecenterchile.com.";
         status.classList.add("err");
         return;
       }
 
-      // Envío real (Formspree o endpoint compatible con fetch + JSON)
+      // El mismo identificador se conserva si el usuario reintenta este envío.
+      if (!requestId) requestId = createRequestId();
       var data = new FormData(form);
+      data.set("request_id", requestId);
+
+      var controller = typeof AbortController === "function" ? new AbortController() : null;
+      var timeoutId = controller ? setTimeout(function () { controller.abort(); }, 12000) : null;
+      var options = {
+        method: "POST",
+        body: data,
+        headers: { Accept: "application/json" }
+      };
+      if (controller) options.signal = controller.signal;
+
+      setSubmitting(true);
       status.textContent = "Enviando…";
-      fetch(form.action, { method: "POST", body: data, headers: { Accept: "application/json" } })
+      fetch(form.action, options)
         .then(function (res) {
-          if (res.ok) {
-            form.reset();
-            status.textContent = "¡Listo! Recibimos tus datos, te contactamos pronto.";
-            status.classList.add("ok");
-          } else {
-            throw new Error("bad response");
-          }
+          if (res.ok) return res;
+          var error = new Error("bad response");
+          error.status = res.status;
+          throw error;
         })
-        .catch(function () {
-          status.textContent = "No pudimos enviar el formulario. Intenta de nuevo o escribe a contacto@languagecenterchile.com.";
+        .then(function () {
+          form.reset();
+          requestId = null;
+          status.textContent = "¡Listo! Recibimos tus datos, te contactamos pronto.";
+          status.classList.add("ok");
+        })
+        .catch(function (error) {
+          if (error && error.status === 422) {
+            status.textContent = "Revisa los datos ingresados antes de volver a intentar.";
+          } else if (error && error.name === "AbortError") {
+            status.textContent = "El envío tardó demasiado. Intenta nuevamente con los mismos datos.";
+          } else {
+            status.textContent = "No pudimos enviar el formulario. Intenta de nuevo o escribe a contacto@languagecenterchile.com.";
+          }
           status.classList.add("err");
+        })
+        .then(function () {
+          if (timeoutId) clearTimeout(timeoutId);
+          setSubmitting(false);
         });
     });
   }
