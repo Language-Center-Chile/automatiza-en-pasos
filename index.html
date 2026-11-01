@@ -25,7 +25,7 @@
       <a href="#como-funciona">Cómo funciona</a>
       <a href="#planes">Planes</a>
       <a href="#faq">Preguntas</a>
-      <a class="btn btn--ghost btn--sm" href="#diagnostico">Inscríbete</a>
+      <a class="btn btn--ghost btn--sm" href="#diagnostico">Solicitar información</a>
     </nav>
   </div>
 </header>
@@ -41,8 +41,8 @@
       <h1>Construye un sistema que trabaja por ti.<br>En 7 pasos, sin programar.</h1>
       <p class="lead">Para dueños de pyme que ya saben que automatizar sirve… pero no por dónde empezar. Te guiamos paso a paso.</p>
       <div class="hero__cta">
-        <a class="btn btn--primary" href="#diagnostico">Quiero automatizar mi negocio</a>
-        <a class="btn btn--ghost" href="#diagnostico">Consultar para mi empresa</a>
+        <a class="btn btn--primary" href="#diagnostico">Solicitar información</a>
+        <a class="btn btn--ghost" href="#diagnostico">Solicitar información para empresas</a>
       </div>
       <p class="microcopy"><svg class="ico-check" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 13l4 4L19 7"/></svg>Diagnóstico gratis · sin conocimientos técnicos</p>
     </div>
@@ -152,7 +152,7 @@
         <ul class="plan__feats">
           <li>Ruta completa de 7 pasos</li><li>CRM + plantillas y prompts</li><li>2 sesiones en vivo (diagnóstico + revisión)</li><li>Bonos incluidos</li>
         </ul>
-        <a class="btn btn--primary btn--block" href="#diagnostico">Quiero conocer el programa</a>
+        <a class="btn btn--primary btn--block" href="#diagnostico">Solicitar información</a>
       </article>
       <article class="plan">
         <h3 class="plan__nm">Empresa</h3><p class="plan__mod">B2B Pro · hasta 10 personas</p>
@@ -160,7 +160,7 @@
         <ul class="plan__feats">
           <li>Diagnóstico del equipo</li><li>Sesiones privadas</li><li>Plantillas y ruta de implementación</li>
         </ul>
-        <a class="btn btn--ghost btn--block" href="#diagnostico">Solicitar propuesta</a>
+        <a class="btn btn--ghost btn--block" href="#diagnostico">Solicitar información para empresas</a>
       </article>
     </div>
     <p class="section__note">Precios de preparación interna · no habilitan cobro hasta completar QA y aprobación final.</p>
@@ -225,10 +225,10 @@
     <h2 class="cta-final__title">¿Listo para que tu negocio<br>trabaje por ti?</h2>
     <p class="cta-final__sub">Conoce la ruta y descubre qué automatizar primero. Sin programar, paso a paso.</p>
     <div class="cta-final__btns">
-      <a class="btn btn--primary" href="#diagnostico">Quiero conocer el programa</a>
-      <a class="btn btn--ghost-light" href="#diagnostico">Consultar para mi empresa</a>
+      <a class="btn btn--primary" href="#diagnostico">Solicitar información</a>
+      <a class="btn btn--ghost-light" href="#diagnostico">Solicitar información para empresas</a>
     </div>
-    <p class="cta-final__micro">Registro de interés · sin cobro en esta versión</p>
+    <p class="cta-final__micro">Solicitud de información · sin cobro</p>
     <ul class="stats">
       <li><strong>7 pasos</strong><span>de diagnóstico a sistema</span></li>
       <li><strong>100%</strong><span>sin código</span></li>
@@ -241,19 +241,20 @@
 <!-- ============ DIAGNOSTICO (FORM) ============ -->
 <section class="section section--cream" id="diagnostico">
   <div class="container container--narrow">
-    <h2 class="section__title section__title--sm center">Registra tu interés.</h2>
-    <p class="section__sub">La captura permanece desactivada hasta configurar el canal oficial y completar las pruebas.</p>
+    <h2 class="section__title section__title--sm center">Solicita información.</h2>
+    <p class="section__sub">Completa el formulario: se abrirá tu correo con la solicitud lista para enviar a contacto@languagecenterchile.com. Te responderemos con las condiciones vigentes.</p>
 
-    <!-- 
-      LEAD FORM — cómo conectar el destino de los leads:
-      1) Formspree (más fácil): crea un form en formspree.io y reemplaza la URL del action.
-      2) Google Sheet: publica un Apps Script como web app y apunta el action ahí.
-      3) n8n: crea un webhook y úsalo como action.
-      Antes de habilitar: aprobar el aviso de datos, configurar el destino oficial,
-      probar la recepción y confirmar el procedimiento de acceso/corrección/eliminación.
-      Mientras no esté conectado, el formulario muestra un aviso (ver script.js).
+    <!--
+      FORMULARIO "SOLICITAR INFORMACIÓN" — destino decidido por Katherine el 01-11-2026: correo contacto@languagecenterchile.com.
+      El sitio no envía datos a terceros: script.js valida, arma un mailto con asunto fijo
+      "[Automatiza 7 Pasos] Solicitud de información" y abre el programa de correo de la persona, que decide si envía.
+      Sin JavaScript, el action mailto actúa como respaldo con validación nativa (campos obligatorios y autorización);
+      su soporte depende del navegador y del programa de correo, y el cuerpo llega como pares campo=valor.
+      script.js desactiva la validación nativa solo cuando JavaScript está disponible.
+      Antes de publicar: aprobar textos, probar la llegada a la casilla (sin spam) y preparar la respuesta modelo.
+      WhatsApp y formularios conectados (Formspree, Apps Script, n8n) quedan para una etapa posterior.
     -->
-    <form class="form" id="lead-form" action="https://formspree.io/f/REEMPLAZAR_ID" method="POST" novalidate>
+    <form class="form" id="lead-form" action="mailto:contacto@languagecenterchile.com?subject=%5BAutomatiza%207%20Pasos%5D%20Solicitud%20de%20informaci%C3%B3n" method="post" enctype="text/plain">
       <div class="form__row">
         <label class="field"><span>Nombre</span><input type="text" name="nombre" required autocomplete="name" placeholder="Tu nombre"></label>
         <label class="field"><span>Email</span><input type="email" name="email" required autocomplete="email" placeholder="tu@correo.com"></label>
@@ -287,10 +288,11 @@
       <details class="form__privacy" id="form-privacy-note">
         <summary>Cómo usaremos tus datos</summary>
         <p>Usaremos tu nombre y correo —y los datos opcionales que entregues— para responder esta solicitud y continuar la conversación sobre el programa.</p>
-        <p>No enviaremos estos datos a analítica ni los usaremos para cobrar. Puedes solicitar acceso, corrección o eliminación escribiendo a <a href="mailto:contacto@languagecenterchile.com">contacto@languagecenterchile.com</a>.</p>
+        <p>Este formulario no envía datos por sí mismo: abre tu programa de correo con el mensaje listo y tú decides si lo envías. No enviaremos estos datos a analítica ni los usaremos para cobrar. Puedes solicitar acceso, corrección o eliminación escribiendo a <a href="mailto:contacto@languagecenterchile.com">contacto@languagecenterchile.com</a>.</p>
       </details>
-      <button type="submit" class="btn btn--primary btn--block">Registrar interés</button>
+      <button type="submit" class="btn btn--primary btn--block">Solicitar información</button>
       <p class="form__status" id="form-status" role="status" aria-live="polite"></p>
+      <p class="form__fallback">¿No se abrió tu correo? Escríbenos a <a href="mailto:contacto@languagecenterchile.com?subject=%5BAutomatiza%207%20Pasos%5D%20Solicitud%20de%20informaci%C3%B3n">contacto@languagecenterchile.com</a>.</p>
     </form>
   </div>
 </section>
@@ -306,7 +308,7 @@
     </div>
     <nav class="footer__links">
       <div><h4>Programa</h4><a href="#como-funciona">Cómo funciona</a><a href="#planes">Planes</a><a href="#faq">Preguntas frecuentes</a></div>
-      <div><h4>Contacto</h4><a href="#diagnostico">Registrar interés</a><a href="mailto:contacto@languagecenterchile.com">Email</a></div>
+      <div><h4>Contacto</h4><a href="#diagnostico">Solicitar información</a><a href="mailto:contacto@languagecenterchile.com">Email</a></div>
     </nav>
   </div>
   <div class="container footer__bottom">
