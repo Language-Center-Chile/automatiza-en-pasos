@@ -43,19 +43,28 @@
   /* ---------- Formulario "Solicitar información" (destino: correo) ---------- */
   // Decisión de Katherine (01-11-2026): las solicitudes llegan a contacto@languagecenterchile.com.
   // El sitio no envía datos a terceros: arma un mailto y abre el programa de correo de la persona.
+  // Un mailto NO prueba envío ni llegada: la persona decide si envía el correo.
   var DESTINO = "contacto@languagecenterchile.com";
   var ASUNTO = "[Automatiza 7 Pasos] Solicitud de información";
   var form = document.getElementById("lead-form");
   var status = document.getElementById("form-status");
 
-  // Parámetros de campaña (sin datos personales) para medir el origen de la solicitud.
+  // Campaña: solo se aceptan valores conocidos (allowlist). Cualquier otro valor se
+  // registra como "otro", para no copiar al correo texto arbitrario de la URL.
+  var CAMPANA_PERMITIDA = {
+    utm_source: /^(instagram|facebook|linkedin|whatsapp|email|google|web)$/,
+    utm_medium: /^(social|email|organic|referral|qr)$/,
+    utm_campaign: /^(automatiza_7_pasos_launch)$/,
+    utm_content: /^(post(0[1-9]|1[0-2])|leadmagnet_checklist|nurture_d([0-9]|[1-2][0-9]))$/
+  };
+
   function origenCampana() {
     var params = new URLSearchParams(window.location.search);
-    var claves = ["utm_source", "utm_medium", "utm_campaign", "utm_content"];
     var partes = [];
-    claves.forEach(function (k) {
-      var v = params.get(k);
-      if (v) partes.push(k + "=" + v.slice(0, 60));
+    Object.keys(CAMPANA_PERMITIDA).forEach(function (k) {
+      if (!params.has(k)) return;
+      var v = String(params.get(k) || "").trim().toLowerCase();
+      partes.push(k + "=" + (CAMPANA_PERMITIDA[k].test(v) ? v : "otro"));
     });
     return partes.length ? partes.join(" · ") : "directo";
   }
@@ -66,12 +75,16 @@
   }
 
   if (form && status) {
+    // Con JavaScript se usa la validación propia con mensaje en pantalla.
+    // Sin JavaScript, el HTML conserva la validación nativa (required + consentimiento).
+    form.noValidate = true;
+
     form.addEventListener("submit", function (e) {
       e.preventDefault();
       status.className = "form__status";
 
       if (!form.checkValidity()) {
-        status.textContent = "Revisa los campos obligatorios, por favor.";
+        status.textContent = "Revisa los campos obligatorios y la autorización, por favor.";
         status.classList.add("err");
         form.reportValidity();
         return;
