@@ -40,15 +40,36 @@
     if (item.classList.contains("is-open")) setOpen(item, true);
   });
 
-  /* ---------- Formulario de leads ---------- */
+  /* ---------- Formulario "Solicitar información" (destino: correo) ---------- */
+  // Decisión de Katherine (01-11-2026): las solicitudes llegan a contacto@languagecenterchile.com.
+  // El sitio no envía datos a terceros: arma un mailto y abre el programa de correo de la persona.
+  var DESTINO = "contacto@languagecenterchile.com";
+  var ASUNTO = "[Automatiza 7 Pasos] Solicitud de información";
   var form = document.getElementById("lead-form");
   var status = document.getElementById("form-status");
+
+  // Parámetros de campaña (sin datos personales) para medir el origen de la solicitud.
+  function origenCampana() {
+    var params = new URLSearchParams(window.location.search);
+    var claves = ["utm_source", "utm_medium", "utm_campaign", "utm_content"];
+    var partes = [];
+    claves.forEach(function (k) {
+      var v = params.get(k);
+      if (v) partes.push(k + "=" + v.slice(0, 60));
+    });
+    return partes.length ? partes.join(" · ") : "directo";
+  }
+
+  function valor(nombre) {
+    var campo = form.elements[nombre];
+    return campo && campo.value ? String(campo.value).trim() : "";
+  }
+
   if (form && status) {
     form.addEventListener("submit", function (e) {
       e.preventDefault();
       status.className = "form__status";
 
-      // Validación básica
       if (!form.checkValidity()) {
         status.textContent = "Revisa los campos obligatorios, por favor.";
         status.classList.add("err");
@@ -56,30 +77,30 @@
         return;
       }
 
-      // ¿El formulario todavía no está conectado a un destino?
-      if (form.action.indexOf("REEMPLAZAR_ID") !== -1) {
-        status.textContent = "El registro todavía no está habilitado. Puedes escribir a contacto@languagecenterchile.com.";
-        status.classList.add("err");
-        return;
-      }
+      var mensaje = valor("mensaje");
+      if (mensaje.length > 1000) mensaje = mensaje.slice(0, 1000) + "…";
 
-      // Envío real (Formspree o endpoint compatible con fetch + JSON)
-      var data = new FormData(form);
-      status.textContent = "Enviando…";
-      fetch(form.action, { method: "POST", body: data, headers: { Accept: "application/json" } })
-        .then(function (res) {
-          if (res.ok) {
-            form.reset();
-            status.textContent = "¡Listo! Recibimos tus datos, te contactamos pronto.";
-            status.classList.add("ok");
-          } else {
-            throw new Error("bad response");
-          }
-        })
-        .catch(function () {
-          status.textContent = "No pudimos enviar el formulario. Intenta de nuevo o escribe a contacto@languagecenterchile.com.";
-          status.classList.add("err");
-        });
+      var lineas = [
+        "Hola, quiero recibir información sobre «Automatiza tu Negocio en 7 Pasos».",
+        "",
+        "Nombre: " + valor("nombre"),
+        "Correo: " + valor("email"),
+        "WhatsApp (opcional): " + (valor("whatsapp") || "—"),
+        "Tipo de negocio: " + (valor("tipo_negocio") || "—"),
+        "Interés: " + (valor("plan_interes") || "—"),
+        "Proceso que me gustaría automatizar: " + (mensaje || "—"),
+        "",
+        "Consentimiento: autorizo el uso de estos datos solo para responder esta solicitud y dar seguimiento sobre el programa.",
+        "Origen: " + origenCampana()
+      ];
+
+      var enlace = "mailto:" + DESTINO +
+        "?subject=" + encodeURIComponent(ASUNTO) +
+        "&body=" + encodeURIComponent(lineas.join("\n"));
+
+      status.textContent = "Se abrirá tu correo con la solicitud lista. Revísala y presiona Enviar. Si no se abre, escríbenos a " + DESTINO + ".";
+      status.classList.add("ok");
+      window.location.href = enlace;
     });
   }
 })();
