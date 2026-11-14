@@ -110,7 +110,7 @@ No guardar credenciales, documentos de identidad completos ni datos personales i
 | Datos personales y secretos ausentes | `PENDIENTE` | Requiere revisión cuadro a cuadro del corte final. |
 | Salidas finales y hashes completos | `FALLA` | El video, SRT y transcripción todavía no existen. |
 
-**Resultado inicial:** 0 controles cerrados sin condición; 1 pasa condicionado; 1 parcial; 9 fallan o permanecen pendientes. El Video 00 no está autorizado para grabación ni venta.
+**Resultado inicial:** 0 controles cerrados sin condición; 1 pasa condicionado; 1 parcial; 9 fallan y 1 permanece pendiente. El Video 00 no está autorizado para grabación ni venta.
 
 ## 8. Secuencia de desbloqueo
 
