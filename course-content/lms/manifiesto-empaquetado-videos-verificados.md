@@ -1,8 +1,11 @@
 # Manifiesto de empaquetado de videos verificados
 
-Producto: **Automatiza tu Negocio en 7 Pasos**  
-Fecha de corte: **2026-11-19**  
-Estado global: `NO_LISTO_PARA_LMS`  
+Producto: **Automatiza tu Negocio en 7 Pasos**
+
+Fecha de corte: **2026-11-19**
+
+Estado global: `NO_LISTO_PARA_LMS`
+
 Alcance: inventario operativo de los MP4 reales para empaquetado privado. No autoriza carga, publicación ni sustitución de originales.
 
 ## Propósito
