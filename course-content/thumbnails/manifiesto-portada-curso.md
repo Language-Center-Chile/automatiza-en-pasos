@@ -1,44 +1,30 @@
 # Manifiesto de portada del curso — Automatiza tu Negocio en 7 Pasos
 
-**Estado:** CANDIDATO_PARA_REVISIÓN  
+**Versión vigente:** v2, lista para prueba autorizada con rol estudiante  
 **Uso previsto:** imagen destacada y tarjeta del curso en MasterStudy  
-**Fecha de preparación:** 2026-11-27  
+**Actualización:** 27-11-2026  
 
 ## Motivo
 
-La prueba con rol estudiante mostró la tarjeta de `Automatiza tu Negocio en 7 Pasos` sin imagen. La carpeta oficial `02 — Imágenes y miniaturas` estaba vacía al comprobarla. Este paquete deja una portada lista para revisión y una fuente editable, sin modificar el curso ni publicar archivos.
+La tarjeta del curso apareció sin imagen en la vista de estudiante. En el diseño v1 el título quedaba fuera del recorte central. El [encargo de v2](https://github.com/KatherineStehberg/ksl-orquestador/issues/127#issuecomment-7224691297) especifica el título centrado para que se lea en la tarjeta.
 
-## Archivos del paquete
+## Archivos
 
-| Tipo | Archivo | Ubicación | Especificación | SHA-256 local |
-| --- | --- | --- | --- | --- |
-| Imagen lista para carga | `LC_ATN7P_PORTADA_CURSO_v1.png` | [Google Drive](https://drive.google.com/file/d/1be4joLsV5645SexaiG4kYHKuv6EIEN6e/view) | PNG, 2560 × 1440, RGBA | `ca8fddaec7bf93a0cb001cbce7d706d523936c6b5b281bf8126fde4356f87e5e` |
-| Fuente editable | `LC_ATN7P_PORTADA_CURSO_EDITABLE_v1` | [Google Slides](https://docs.google.com/presentation/d/1ZJ7745wPnJNbLELBa6jnBvjNJXaLIL3mwcVWDQXFwfc/edit) | Una diapositiva, formato 16:9 | Fuente PPTX validada: `13875750a27d76ec16ad54583f7fecea80cb9f6a4483b9d7d2ff859dcad58b9c` |
+| Archivo | Ubicación | Especificación | SHA-256 |
+| --- | --- | --- | --- |
+| `LC_ATN7P_PORTADA_CURSO_v2.png` | [Google Drive](https://drive.google.com/file/d/1TLBOxXp6eNiNwX9r81SBRIEZIsf93Q5n/view) | PNG RGB, 2560 × 1440, 942 340 bytes | `9ed62a29abdfb7b73c6ea921d1735cdf5f5a8969c4c2e79cb2a42bd0b998c13c` |
+| Fuente editable | [Google Slides](https://docs.google.com/presentation/d/1ZJ7745wPnJNbLELBa6jnBvjNJXaLIL3mwcVWDQXFwfc/edit) | Diapositiva 1, v2. Diapositiva 2, historial v1. | — |
+| `LC_ATN7P_PORTADA_CURSO_v1.png` | [Google Drive](https://drive.google.com/file/d/1be4joLsV5645SexaiG4kYHKuv6EIEN6e/view) | PNG RGBA, 2560 × 1440. Versión de archivo. | `ca8fddaec7bf93a0cb001cbce7d706d523936c6b5b281bf8126fde4356f87e5e` |
 
 Carpeta oficial: [02 — Imágenes y miniaturas](https://drive.google.com/drive/folders/1Br1nYRIoee4_vyx_YdCm51QVWhMBmcWy).
 
-## Contenido visible
+## Validación de v2
 
-- marca textual `LANGUAGE CENTER CHILE`;
-- título `Automatiza tu negocio en 7 pasos`;
-- descripción breve del curso;
-- recordatorio de datos ficticios, entorno de prueba y revisión humana;
-- recorrido visual desde trabajo manual hasta una salida controlada.
+- La diapositiva 1, exportada de Slides a PDF, se rasterizó a 2560 × 1440. El título se renderizó desde el texto del PDF y el fondo conserva la resolución de origen.
+- En el recorte cuadrado centrado de 130 × 130 y en la vista rectangular de 200 × 113 se leen las tres líneas completas del título.
+- La imagen muestra el título grande y centrado sobre una franja azul oscuro semitransparente, con el fondo y los íconos de la v1.
 
-La ilustración no representa una ejecución real ni una interfaz de producción. No contiene logos externos, datos personales, credenciales, precios, pagos o promesas de resultados.
-
-## Validaciones realizadas
-
-- presentación editable finalizada sin errores de integridad o geometría;
-- una diapositiva 16:9 y fuente visual embebida en el archivo;
-- render final comprobado a 1920 × 1080;
-- PNG comprobado a 2560 × 1440;
-- vista reducida comprobada a 480 × 270, con el título legible;
-- texto de Google Slides releído después de la importación;
-- ambos archivos guardados en la carpeta oficial de miniaturas;
-- cero cambios en WordPress, MasterStudy, alumnos, precios o producción.
-
-## Carga reversible
+## Prueba reversible en MasterStudy
 
 1. Conservar la imagen actual, si aparece una durante la revisión, antes de sustituirla.
 2. Cargar el PNG únicamente en un curso privado o entorno de prueba.
@@ -46,6 +32,4 @@ La ilustración no representa una ejecución real ni una interfaz de producción
 4. Verificar encuadre, título, contraste y ausencia de recortes en escritorio y móvil.
 5. Si falla cualquier control, restaurar la imagen anterior o dejar la tarjeta sin publicar y registrar la evidencia.
 
-## Puerta de decisión
-
-La portada no está aprobada ni cargada. Katherine debe aprobar este candidato antes de que el responsable LMS lo pruebe en MasterStudy.
+La comprobación en MasterStudy requiere una sesión autorizada con rol estudiante. Registrar escritorio y móvil en [#127](https://github.com/KatherineStehberg/ksl-orquestador/issues/127).
